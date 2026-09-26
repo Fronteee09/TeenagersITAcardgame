@@ -12,14 +12,12 @@
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     min-height: 100vh;
-    /* Sfondo scuro con sfumatura stile Aero Dark */
     background: linear-gradient(to bottom, #1a2230 0%, #111620 50%, #0d1118 100%);
     color: #e0e6ed;
   }
   .sidebar {
     width: 200px;
     flex-shrink: 0;
-    /* Barra laterale effetto vetro scuro */
     background: linear-gradient(to bottom, rgba(35, 45, 60, 0.9) 0%, rgba(20, 26, 36, 0.95) 100%);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.05), 2px 0 10px rgba(0,0,0,0.5);
@@ -48,7 +46,6 @@
     color: #ffffff;
   }
   .sidebar a.active {
-    /* Stile Aero attivo con bagliore azzurro scuro */
     background: linear-gradient(to bottom, #3b82d6, #1c529c);
     color: #ffffff;
     font-weight: bold;
@@ -61,8 +58,7 @@
   }
   .panel {
     display: none;
-    max-width: 620px;
-    /* Pannello stile finestra Aero Glass scura */
+    max-width: 900px; /* Più largo per contenere affiancati post e commenti */
     background: linear-gradient(to bottom, rgba(30, 38, 50, 0.85) 0%, rgba(18, 24, 33, 0.9) 100%);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 10px;
@@ -97,12 +93,144 @@
     border-radius: 6px;
     border: 1px solid rgba(227, 179, 65, 0.2);
   }
+
+  /* Stili specifici per la sezione Annunci (Layout a due colonne) */
+  .annunci-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .post-box, .comments-box {
+    /* Sfumatura Aero scura leggermente più visibile come richiesto */
+    background: linear-gradient(to bottom, rgba(45, 58, 78, 0.95) 0%, rgba(22, 30, 42, 0.95) 50%, rgba(32, 42, 58, 0.95) 100%);
+    border: 1px solid rgba(120, 170, 225, 0.3);
+    border-radius: 12px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.4);
+    padding: 18px;
+  }
+  .post-box {
+    flex: 1.3;
+  }
+  .comments-box {
+    flex: 1;
+  }
+  .post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+    color: #c5d3e6;
+  }
+  .post-header .author {
+    font-weight: bold;
+    color: #ffffff;
+  }
+  .badge-dev {
+    background: linear-gradient(to bottom, #4cb5f5, #2279b8);
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .post-content {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #d0dcEE;
+    margin-bottom: 15px;
+  }
+  .post-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .aero-btn {
+    background: linear-gradient(to bottom, rgba(80, 100, 130, 0.6), rgba(30, 45, 65, 0.8));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .aero-btn:hover {
+    background: linear-gradient(to bottom, rgba(100, 125, 160, 0.8), rgba(45, 65, 90, 0.9));
+  }
+  .comments-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 8px;
+  }
+  .comment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+  }
+  .avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .avatar.orange { background: radial-gradient(circle at 30% 30%, #ffaa44, #cc6600); }
+  .avatar.green { background: radial-gradient(circle at 30% 30%, #66cc66, #228822); }
+  .avatar.blue { background: radial-gradient(circle at 30% 30%, #44aaff, #1155cc); }
+  
+  .comment-text .user {
+    font-weight: bold;
+    color: #ffffff;
+  }
+  .comment-text .msg {
+    color: #b8c7d9;
+    margin-top: 2px;
+  }
+  .comment-input-area {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+  }
+  .comment-input {
+    flex: 1;
+    background: rgba(15, 20, 28, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: white;
+    font-size: 12px;
+    outline: none;
+  }
+  .comment-input::placeholder {
+    color: #788a9f;
+  }
+  .send-btn {
+    background: linear-gradient(to bottom, #4cb5f5, #2279b8);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+  }
 </style>
 </head>
 <body>
 
 <div class="sidebar">
-  <h2>TeenagersITA Cards</h2>
+  <h2>TeenagersITAcards</h2>
   <a data-target="home" class="active">Home</a>
   <a data-target="annunci">Annunci</a>
   <a data-target="carte">Carte</a>
@@ -122,8 +250,60 @@
   <!-- SCHEDA ANNUNCI -->
   <div id="annunci" class="panel">
     <h1>Annunci & Novità</h1>
-    <p>Qui troverai tutti gli aggiornamenti sul progetto, le patch notes e le novità in arrivo sulle carte di TeenagersITA.</p>
-    <p>Resta sintonizzato per non perderti nessun evento!</p>
+    <div class="annunci-container" style="margin-top: 15px;">
+      
+      <!-- Post principale -->
+      <div class="post-box">
+        <div class="post-header">
+          <span class="author">Fronte ★</span>
+          <span>u/Unknow_guy21</span>
+          <span class="badge-dev">Dev</span>
+          <span style="margin-left: auto; color: #8fa3bf; font-size: 11px;">25/09/2026 · 16:31</span>
+        </div>
+        <div class="post-content">
+          Benvenuti! Qui visualizzerete notizie, tutte le carte esistenti al momento e i match con il "bot". Il progetto è stato sviluppato interamente da me e supportato dai mod di r/TeenagersITA. Ricordiamo che gli utenti mostrati nelle carte sono coloro che ci hanno dato il consenso di farli apparire. Buon divertimento a tutti!
+        </div>
+        <div class="post-actions">
+          <button class="aero-btn">👍</button>
+          <button class="aero-btn">👎</button>
+        </div>
+      </div>
+
+      <!-- Sezione Commenti -->
+      <div class="comments-box">
+        <div class="comments-title">Commenti</div>
+        
+        <div class="comment-item">
+          <div class="avatar orange"></div>
+          <div class="comment-text">
+            <div class="user">Clipp3r</div>
+            <div class="msg">ZIOPERA che progetto ahhhh!</div>
+          </div>
+        </div>
+
+        <div class="comment-item">
+          <div class="avatar green"></div>
+          <div class="comment-text">
+            <div class="user">Bho_76</div>
+            <div class="msg">bho</div>
+          </div>
+        </div>
+
+        <div class="comment-item">
+          <div class="avatar blue"></div>
+          <div class="comment-text">
+            <div class="user">Aliexpress final boss</div>
+            <div class="msg">WOW! lo vendo!</div>
+          </div>
+        </div>
+
+        <div class="comment-input-area">
+          <input type="text" class="comment-input" placeholder="Scrivi un commento...">
+          <button class="send-btn">Invia</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- SCHEDA CARTE -->
