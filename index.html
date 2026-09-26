@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="it" class="dark">
+<html lang="it" class="theme-dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home - Carte di r/TeenagersITA</title>
 <style>
-  :root {
+  /* Temi Aero (Scuro, Chiaro e Giallo) */
+  :root.theme-dark {
     --bg-grad-1: #1a2230; --bg-grad-2: #111620; --bg-grad-3: #0d1118;
     --panel-bg: rgba(22, 27, 34, 0.85);
     --text-main: #e0e6ed; --text-muted: #b8c7d9; 
@@ -13,13 +14,21 @@
     --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.05) 100%);
     --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.05) 51%, rgba(255,255,255,0.15) 100%);
   }
-  html.light {
+  :root.theme-light {
     --bg-grad-1: #eaf6ff; --bg-grad-2: #cfe8fa; --bg-grad-3: #dff1fc;
     --panel-bg: rgba(255, 255, 255, 0.85);
     --text-main: #1a1a1a; --text-muted: #4a5568; 
     --border-color: rgba(127, 184, 224, 0.4);
     --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(230,242,255,0.8) 50%, rgba(200,225,250,0.8) 51%, rgba(235,245,255,0.9) 100%);
     --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(240,248,255,0.9) 50%, rgba(210,230,255,0.9) 51%, rgba(245,250,255,1) 100%);
+  }
+  :root.theme-yellow {
+    --bg-grad-1: #fef08a; --bg-grad-2: #fde047; --bg-grad-3: #eab308;
+    --panel-bg: rgba(255, 251, 235, 0.9);
+    --text-main: #713f12; --text-muted: #854d0e; 
+    --border-color: rgba(202, 138, 4, 0.4);
+    --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(254,240,138,0.8) 50%, rgba(253,224,71,0.8) 51%, rgba(254,249,195,0.9) 100%);
+    --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(254,243,199,0.9) 50%, rgba(253,230,138,0.9) 51%, rgba(255,255,255,1) 100%);
   }
   
   * { box-sizing: border-box; }
@@ -33,6 +42,7 @@
     color: var(--text-main);
   }
 
+  /* Controlli in alto a destra */
   .top-controls { 
     position: fixed; 
     top: 15px; 
@@ -53,10 +63,47 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 10px rgba(0,0,0,0.3);
     backdrop-filter: blur(6px);
     transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
   .control-btn:hover {
     background: var(--aero-btn-hover);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 12px rgba(0,0,0,0.4);
+  }
+
+  /* Menu a tendina impostazioni (Ingranaggio) */
+  .settings-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    width: 160px;
+  }
+  .settings-dropdown.show {
+    display: flex;
+  }
+  .dropdown-item {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    text-align: left;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .dropdown-item:hover {
+    background: var(--aero-btn-hover);
   }
 
   .content { 
@@ -79,13 +126,8 @@
     transition: max-width 0.3s ease;
   }
 
-  body.mobile-view {
-    flex-direction: column;
-  }
-  body.mobile-view .panel {
-    max-width: 400px !important;
-    margin: 60px auto 20px auto;
-  }
+  body.mobile-view { flex-direction: column; }
+  body.mobile-view .panel { max-width: 400px !important; margin: 60px auto 20px auto; }
   
   .panel h1 { font-size: 26px; margin-top: 0; color: var(--text-main); }
   .panel p { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
@@ -94,13 +136,13 @@
   
   .warning {
     margin-top: 20px; 
-    color: #e3b341; 
+    color: var(--text-main); 
     font-weight: bold; 
     font-size: 14px;
-    background: rgba(227, 179, 65, 0.1); 
+    background: rgba(227, 179, 65, 0.15); 
     padding: 12px 16px; 
     border-radius: 8px;
-    border: 1px solid rgba(227, 179, 65, 0.25);
+    border: 1px solid var(--border-color);
   }
 </style>
 </head>
@@ -108,7 +150,15 @@
 
 <div class="top-controls">
   <button id="viewToggle" class="control-btn">Vista: PC</button>
-  <button id="themeToggle" class="control-btn">Tema: Scuro</button>
+  
+  <div style="position: relative;">
+    <button id="settingsBtn" class="control-btn">⚙ Impostazioni</button>
+    <div id="settingsMenu" class="settings-dropdown">
+      <button class="dropdown-item" onclick="setTheme('theme-dark')">🌙 Aero Scuro</button>
+      <button class="dropdown-item" onclick="setTheme('theme-light')">☀️ Aero Chiaro</button>
+      <button class="dropdown-item" onclick="setTheme('theme-yellow')">⭐ Aero Giallo</button>
+    </div>
+  </div>
 </div>
 
 <div id="sidebar-container"></div>
@@ -123,6 +173,7 @@
 </div>
 
 <script>
+  // 1. Carica la sidebar
   fetch('sidebar.html')
     .then(response => response.text())
     .then(data => {
@@ -135,26 +186,32 @@
       });
     });
 
-  const htmlElement = document.documentElement;
-  const themeToggle = document.getElementById('themeToggle');
-  
-  if (localStorage.getItem('site_theme') === 'light') {
-    htmlElement.classList.replace('dark', 'light');
-    themeToggle.textContent = 'Tema: Chiaro';
-  }
+  // 2. Gestione menu tendina ingranaggio
+  const settingsBtn = document.getElementById('settingsBtn');
+  const settingsMenu = document.getElementById('settingsMenu');
 
-  themeToggle.addEventListener('click', () => {
-    if (htmlElement.classList.contains('dark')) {
-      htmlElement.classList.replace('dark', 'light');
-      themeToggle.textContent = 'Tema: Chiaro';
-      localStorage.setItem('site_theme', 'light');
-    } else {
-      htmlElement.classList.replace('light', 'dark');
-      themeToggle.textContent = 'Tema: Scuro';
-      localStorage.setItem('site_theme', 'dark');
-    }
+  settingsBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    settingsMenu.classList.toggle('show');
   });
 
+  window.addEventListener('click', () => {
+    settingsMenu.classList.remove('show');
+  });
+
+  // 3. Funzione cambio tema e salvataggio
+  function setTheme(themeName) {
+    document.documentElement.className = themeName;
+    localStorage.setItem('site_theme', themeName);
+    settingsMenu.classList.remove('show');
+  }
+
+  const savedTheme = localStorage.getItem('site_theme');
+  if (savedTheme) {
+    document.documentElement.className = savedTheme;
+  }
+
+  // 4. Tasto Vista PC / Mobile
   const viewToggle = document.getElementById('viewToggle');
   viewToggle.addEventListener('click', () => {
     document.body.classList.toggle('mobile-view');
