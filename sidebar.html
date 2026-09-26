@@ -1,23 +1,18 @@
 <style>
-  /* Stili della Sidebar in stile Windows 7 Aero (Adattabile Chiaro/Scuro) */
   .sidebar {
     width: 240px;
-    height: 100vh;
-    position: sticky;
-    top: 0;
+    min-height: 100vh;
     background: var(--panel-bg);
     border-right: 1px solid var(--border-color);
     padding: 25px 0;
     flex-shrink: 0;
-    backdrop-filter: blur(10px);
-    box-shadow: inset -1px 0 0 rgba(255,255,255,0.1), 4px 0 15px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+    box-shadow: inset -1px 0 0 rgba(255,255,255,0.1), 4px 0 15px rgba(0,0,0,0.2);
     z-index: 1000;
-    transition: transform 0.3s ease;
   }
-  
   .sidebar h2 {
     font-size: 16px;
     padding: 0 20px;
@@ -25,14 +20,12 @@
     color: var(--text-main);
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
   }
-
   .sidebar-links {
     display: flex;
     flex-direction: column;
     gap: 6px;
     padding: 0 12px;
   }
-
   .sidebar a {
     display: block;
     padding: 10px 14px;
@@ -44,14 +37,11 @@
     border: 1px solid transparent;
     transition: all 0.2s ease;
   }
-
   .sidebar a:hover {
     background: var(--aero-btn-hover);
     color: var(--text-main);
     border-color: var(--border-color);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
-
   .sidebar a.active {
     background: var(--aero-btn-bg);
     color: var(--text-main);
@@ -59,65 +49,15 @@
     border-color: var(--border-color);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 5px rgba(0,0,0,0.15);
   }
-
-  /* Pulsante Menu Hamburger per Mobile */
-  .menu-toggle {
-    display: none;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1200;
-    background: var(--aero-btn-bg);
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 18px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 10px rgba(0,0,0,0.3);
-    backdrop-filter: blur(6px);
-  }
-
-  /* Gestione Mobile */
-  @media (max-width: 768px) {
-    .menu-toggle {
-      display: block;
-    }
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      transform: translateX(-100%);
-    }
-    .sidebar.open {
-      transform: translateX(0);
-    }
-  }
 </style>
 
-<!-- Pulsante Hamburger visibile solo su mobile -->
-<button class="menu-toggle" id="menuToggle">&#9776;</button>
-
-<div class="sidebar" id="sidebarMenu">
+<div class="sidebar">
   <h2>TeenagersITAcards</h2>
   <div class="sidebar-links">
     <a href="index.html">Home</a>
     <a href="annunci.html">Annunci</a>
     <a href="carte.html">Carte</a>
-    <a href="giocacolbot.html">Gioca vs Bot</a>
+    <a href="gioca.html">Gioca vs Bot</a>
     <a href="login.html">Account</a>
   </div>
 </div>
-
-<script>
-  // Logica per aprire e chiudere la sidebar da mobile
-  const toggleBtn = document.getElementById('menuToggle');
-  const sidebar = document.getElementById('sidebarMenu');
-
-  if (toggleBtn && sidebar) {
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
-  }
-</script>
