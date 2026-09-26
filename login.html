@@ -2,7 +2,7 @@
 <html lang="it" class="dark theme-blue">
 <head>
 <meta charset="UTF-8">
-<title>Login / Registrazione - Carte di r/TeenagersITA</title>
+<title>Account - Carte di r/TeenagersITA</title>
 <style>
   :root {
     --bg-grad-1: #1a2230; --bg-grad-2: #111620; --bg-grad-3: #0d1118;
@@ -10,19 +10,7 @@
     --panel-grad-1: rgba(30, 38, 50, 0.85); --panel-grad-2: rgba(18, 24, 33, 0.9);
     --text-main: #e0e6ed; --text-muted: #b8c7d9; --border-color: rgba(255, 255, 255, 0.15);
   }
-  html.light {
-    --bg-grad-1: #eaf6ff; --bg-grad-2: #cfe8fa; --bg-grad-3: #dff1fc;
-    --sidebar-grad-1: rgba(245, 251, 271, 0.9); --sidebar-grad-2: rgba(217, 237, 251, 0.95);
-    --panel-grad-1: rgba(255, 255, 255, 0.9); --panel-grad-2: rgba(234, 246, 255, 0.9);
-    --text-main: #1a1a1a; --text-muted: #2a2a2a; --border-color: rgba(127, 184, 224, 0.4);
-  }
   html.theme-blue { --col-main: #3b82d6; --col-dark: #1c529c; }
-  html.theme-green { --col-main: #2ecc71; --col-dark: #27ae60; }
-  html.theme-red { --col-main: #e74c3c; --col-dark: #c0392b; }
-  html.theme-yellow { --col-main: #f1c40f; --col-dark: #d35400; }
-  html.theme-gray { --col-main: #7f8c8d; --col-dark: #34495e; }
-  html.theme-purple { --col-main: #9b59b6; --col-dark: #8e44ad; }
-
   * { box-sizing: border-box; }
   body {
     margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; min-height: 100vh;
@@ -62,9 +50,7 @@
   .auth-btn {
     flex: 1; padding: 10px; border-radius: 6px; border: none; cursor: pointer;
     font-weight: bold; color: white; background: linear-gradient(to bottom, var(--col-main), var(--col-dark));
-    transition: filter 0.2s;
   }
-  .auth-btn:hover { filter: brightness(1.1); }
   .secondary-btn { background: #4a5568; }
   #msg { margin-top: 15px; font-size: 13px; text-align: center; font-weight: bold; }
 </style>
@@ -76,7 +62,7 @@
   <a href="index.html">Home</a>
   <a href="annunci.html">Annunci</a>
   <a href="carte.html">Carte</a>
-  <a href="gioca.html">Gioca vs Bot</a>
+  <a href="giocacolbot.html">Gioca vs Bot</a>
   <a href="login.html" class="active">Account</a>
 </div>
 
@@ -120,7 +106,6 @@
   const userProfile = document.getElementById('userProfile');
   const userEmailDisplay = document.getElementById('userEmailDisplay');
 
-  // Controlla se l'utente è già loggato
   async function checkUser() {
     const { data: { session } } = await supabase.auth.getSession();
     if (session) {
@@ -131,11 +116,10 @@
   }
   checkUser();
 
-  // Registrazione
   signupBtn.addEventListener('click', async () => {
     msg.style.color = 'orange';
     msg.textContent = "Registrazione in corso...";
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email: emailInput.value,
       password: passwordInput.value,
     });
@@ -148,11 +132,10 @@
     }
   });
 
-  // Login
   loginBtn.addEventListener('click', async () => {
     msg.style.color = 'orange';
     msg.textContent = "Accesso in corso...";
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email: emailInput.value,
       password: passwordInput.value,
     });
@@ -166,7 +149,6 @@
     }
   });
 
-  // Logout
   logoutBtn.addEventListener('click', async () => {
     await supabase.auth.signOut();
     location.reload();
