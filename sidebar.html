@@ -1,4 +1,4 @@
-<!-- Stili della Sidebar e dei Controlli Globali -->
+<!-- Stili della Sidebar e dei Controlli -->
 <style>
   .sidebar {
     width: 240px;
@@ -37,7 +37,7 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  /* Controlli in alto a destra (presenti ovunque grazie alla sidebar) */
+  /* Controlli in alto a destra */
   .top-controls { 
     position: fixed; 
     top: 15px; 
@@ -115,14 +115,17 @@
   }
 </style>
 
-<!-- Struttura HTML della Sidebar -->
+<!-- Struttura Sidebar -->
 <div class="sidebar">
-  <h2>r/TeenagersITA</h2>
+  <h2>TeenagersITAcards</h2>
   <a href="index.html">Home</a>
+  <a href="annunci.html">Annunci</a>
   <a href="carte.html">Carte</a>
+  <a href="gioca.html">Gioca vs Bot</a>
+  <a href="account.html">Account</a>
 </div>
 
-<!-- Controlli Globali in alto a destra -->
+<!-- Controlli in alto a destra -->
 <div class="top-controls">
   <button id="viewToggle" class="control-btn">Vista: PC</button>
   
@@ -130,7 +133,6 @@
     <button id="settingsBtn" class="control-btn">⚙ Impostazioni</button>
     <div id="settingsMenu" class="settings-dropdown">
       
-      <!-- Scelta Colore Base -->
       <div class="dropdown-section-title">Colore Sfondo</div>
       <div class="dropdown-group">
         <button class="dropdown-item" onclick="setColor('color-blue')">🔵 Blu Aero</button>
@@ -143,7 +145,6 @@
 
       <hr style="border: none; border-top: 1px solid var(--border-color); margin: 4px 0;">
 
-      <!-- Scelta Modalità Scuro / Chiaro -->
       <div class="dropdown-section-title">Modalità</div>
       <div class="dropdown-group">
         <button class="dropdown-item" onclick="setMode('mode-dark')">🌙 Scura</button>
@@ -154,9 +155,8 @@
   </div>
 </div>
 
-<!-- Script per la gestione dei temi, del menu e della vista mobile/PC -->
+<!-- Script per la gestione dei bottoni e delle preferenze -->
 <script>
-  // Gestione apertura/chiusura menu tendina
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsMenu = document.getElementById('settingsMenu');
 
@@ -171,7 +171,6 @@
     });
   }
 
-  // Funzioni di cambio colore e modalità
   function setColor(colorClass) {
     const htmlEl = document.documentElement;
     htmlEl.classList.remove('color-blue', 'color-yellow', 'color-red', 'color-green', 'color-gray', 'color-purple');
@@ -188,7 +187,6 @@
     if(settingsMenu) settingsMenu.classList.remove('show');
   }
 
-  // Ripristino delle preferenze salvate dall'utente
   const savedColor = localStorage.getItem('site_color');
   const savedMode = localStorage.getItem('site_mode');
   if (savedColor) {
@@ -200,7 +198,6 @@
     document.documentElement.classList.add(savedMode);
   }
 
-  // Pulsante Vista PC / Mobile
   const viewToggle = document.getElementById('viewToggle');
   if (viewToggle) {
     viewToggle.addEventListener('click', () => {
