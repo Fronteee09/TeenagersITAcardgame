@@ -1,43 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - TeenagersITAcards</title>
 <style>
-  .sidebar {
-    width: 200px;
-    flex-shrink: 0;
-    background: linear-gradient(to bottom, rgba(35, 45, 60, 0.9) 0%, rgba(20, 26, 36, 0.95) 100%);
-    border-right: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 18px 0;
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background: #0d1118;
+    color: #e0e6ed;
   }
-  .sidebar h2 { 
-    font-size: 15px; 
-    padding: 0 18px; 
-    margin: 0 0 16px; 
-    color: #e0e6ed; 
+  .content {
+    flex: 1;
+    padding: 40px;
   }
-  .sidebar a {
-    display: block; 
-    margin: 4px 10px; 
-    padding: 9px 12px; 
-    border-radius: 6px;
-    color: #b8c7d9; 
-    text-decoration: none; 
-    font-size: 13px;
+  .panel {
+    max-width: 800px;
+    background: #161b22;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
   }
-  .sidebar a:hover { 
-    background: rgba(255, 255, 255, 0.08); 
-    color: #e0e6ed; 
-  }
-  .sidebar a.active {
-    background: linear-gradient(to bottom, var(--col-main, #3b82d6), var(--col-dark, #1c529c));
-    color: #ffffff; 
-    font-weight: bold; 
-    border: 1px solid rgba(255, 255, 255, 0.3);
+  h1 { margin-top: 0; color: #fff; }
+  p { line-height: 1.6; color: #b8c7d9; }
+
+  /* Gestione Mobile: il layout si trasforma in colonna per non rimpicciolire tutto */
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+    .content {
+      padding: 20px;
+    }
   }
 </style>
+</head>
+<body>
 
-<div class="sidebar">
-  <h2>TeenagersITAcards</h2>
-  <a href="index.html">Home</a>
-  <a href="annunci.html">Annunci</a>
-  <a href="carte.html">Carte</a>
-  <a href="giocacolbot.html">Gioca vs Bot</a>
-  <a href="login.html">Account</a>
+<!-- Qui viene caricata la sidebar in automatico -->
+<div id="sidebar-container"></div>
+
+<div class="content">
+  <div class="panel">
+    <h1>Benvenuto su TeenagersITAcards!</h1>
+    <p>Il sito ufficiale dei giochi di carte della community. Da qui puoi navigare tra le sezioni senza problemi, sia da PC che da telefono.</p>
+  </div>
 </div>
+
+<script>
+  // Caricamento dinamico del menu e attivazione del link Home
+  fetch('sidebar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('sidebar-container').innerHTML = data;
+      const links = document.querySelectorAll('.sidebar a');
+      links.forEach(link => {
+        if (link.getAttribute('href') === 'index.html') {
+          link.classList.add('active');
+        }
+      });
+    });
+</script>
+
+</body>
+</html>
