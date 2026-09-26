@@ -1,5 +1,66 @@
-<!-- Stili Puliti per la Sidebar e i Controlli in Alto a Destra -->
+<!DOCTYPE html>
+<html lang="it" class="color-blue mode-dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - Carte di r/TeenagersITA</title>
 <style>
+  /* --- 1. CONFIGURAZIONE COLORI BASE --- */
+  :root.color-blue {
+    --h-1: #1a2230; --h-2: #111620; --h-3: #0d1118;
+    --l-1: #eaf6ff; --l-2: #cfe8fa; --l-3: #dff1fc;
+  }
+  :root.color-yellow {
+    --h-1: #fef08a; --h-2: #fde047; --h-3: #eab308;
+    --l-1: #fefce8; --l-2: #fef9c3; --l-3: #fef08a;
+  }
+  :root.color-red {
+    --h-1: #3b1619; --h-2: #260d0f; --h-3: #180608;
+    --l-1: #fff1f2; --l-2: #ffe4e6; --l-3: #fecdd3;
+  }
+  :root.color-green {
+    --h-1: #14281d; --h-2: #0d1a13; --h-3: #08110b;
+    --l-1: #f0fdf4; --l-2: #dcfce7; --l-3: #bbf7d0;
+  }
+  :root.color-gray {
+    --h-1: #1f242d; --h-2: #151921; --h-3: #0d1015;
+    --l-1: #f8fafc; --l-2: #f1f5f9; --l-3: #e2e8f0;
+  }
+  :root.color-purple {
+    --h-1: #281832; --h-2: #1b0f22; --h-3: #110916;
+    --l-1: #faf5ff; --l-2: #f3e8ff; --l-3: #e9d5ff;
+  }
+
+  /* --- 2. CONFIGURAZIONE MODALITÀ SCURA / CHIARA --- */
+  :root.mode-dark {
+    --bg-grad-1: var(--h-1); --bg-grad-2: var(--h-2); --bg-grad-3: var(--h-3);
+    --panel-bg: rgba(22, 27, 34, 0.85);
+    --text-main: #e0e6ed; --text-muted: #b8c7d9; 
+    --border-color: rgba(255, 255, 255, 0.15);
+    --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.05) 100%);
+    --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.05) 51%, rgba(255,255,255,0.15) 100%);
+  }
+  :root.mode-light {
+    --bg-grad-1: var(--l-1); --bg-grad-2: var(--l-2); --bg-grad-3: var(--l-3);
+    --panel-bg: rgba(255, 255, 255, 0.85);
+    --text-main: #1a1a1a; --text-muted: #4a5568; 
+    --border-color: rgba(127, 184, 224, 0.4);
+    --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(230,242,255,0.8) 50%, rgba(200,225,250,0.8) 51%, rgba(235,245,255,0.9) 100%);
+    --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(240,248,255,0.9) 50%, rgba(210,230,255,0.9) 51%, rgba(245,250,255,1) 100%);
+  }
+  
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-size: 15px;
+    display: flex; 
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--bg-grad-1) 0%, var(--bg-grad-2) 50%, var(--bg-grad-3) 100%);
+    color: var(--text-main);
+  }
+
+  /* --- 3. SIDEBAR --- */
   .sidebar {
     width: 240px;
     background: var(--panel-bg);
@@ -12,6 +73,7 @@
     box-shadow: inset -1px 0 0 rgba(255,255,255,0.05);
     z-index: 1000;
     min-height: 100vh;
+    flex-shrink: 0;
   }
   .sidebar h2 {
     font-size: 16px;
@@ -39,11 +101,11 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  /* Controlli in alto a destra posizionati correttamente */
+  /* --- 4. CONTROLLI FISSI IN ALTO A DESTRA (Uguali per tutte le pagine) --- */
   .top-controls { 
     position: fixed; 
     top: 15px; 
-    right: 20px; 
+    right: 25px; 
     display: flex; 
     gap: 10px; 
     z-index: 1200; 
@@ -69,7 +131,7 @@
     background: var(--aero-btn-hover);
   }
 
-  /* Menu a tendina delle impostazioni */
+  /* Menu a tendina impostazioni */
   .settings-dropdown {
     position: absolute;
     top: 45px;
@@ -116,19 +178,58 @@
   .dropdown-item:hover {
     background: var(--aero-btn-hover);
   }
-</style>
 
-<!-- Struttura della Sidebar Classica -->
+  /* --- 5. CONTENUTO PRINCIPALE --- */
+  .content { 
+    flex: 1; 
+    padding: 80px 40px 40px 40px; /* Spazio sopra per non coprire i bottoni fissi */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .panel {
+    max-width: 1000px; 
+    width: 100%;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color); 
+    border-radius: 12px; 
+    padding: 40px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 12px 32px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+  }
+  body.mobile-view { flex-direction: column; }
+  body.mobile-view .panel { max-width: 400px !important; margin: 60px auto 20px auto; }
+  
+  .panel h1 { font-size: 26px; margin-top: 0; color: var(--text-main); }
+  .panel p { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
+  .dynamic-link { color: #3b82d6; text-decoration: none; font-weight: bold; }
+  .dynamic-link:hover { text-decoration: underline; }
+  
+  .warning {
+    margin-top: 20px; 
+    color: var(--text-main); 
+    font-weight: bold; 
+    font-size: 14px;
+    background: rgba(227, 179, 65, 0.15); 
+    padding: 12px 16px; 
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
 <div class="sidebar">
   <h2>TeenagersITAcards</h2>
-  <a href="index.html">Home</a>
+  <a href="index.html" class="active">Home</a>
   <a href="annunci.html">Annunci</a>
   <a href="carte.html">Carte</a>
   <a href="gioca.html">Gioca vs Bot</a>
   <a href="account.html">Account</a>
 </div>
 
-<!-- Controlli in alto a destra -->
+<!-- Controlli fissi in alto a destra -->
 <div class="top-controls">
   <button id="viewToggle" class="control-btn">Vista: PC</button>
   
@@ -158,7 +259,17 @@
   </div>
 </div>
 
-<!-- Script di gestione -->
+<!-- Contenuto -->
+<div class="content">
+  <div class="panel">
+    <h1>Carte di r/TeenagersITA:</h1>
+    <p>Benvenuti sul sito dei giochi di carte legati a TeenagersITA.</p>
+    <p>Questo progetto realizzato interamente da Fronte ★ (<a href="https://www.reddit.com/user/Unknow_guy21/" target="_blank" class="dynamic-link">u/Unknow_guy21</a>) si basa sul creare un gioco interattivo disponibile a tutti.</p>
+    <div class="warning">⚠ Le carte presenti su questo sito sono autorizzate dagli utenti ⚠</div>
+  </div>
+</div>
+
+<!-- Script comune di gestione -->
 <script>
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsMenu = document.getElementById('settingsMenu');
@@ -190,7 +301,7 @@
     if(settingsMenu) settingsMenu.classList.remove('show');
   }
 
-  // Ripristina le preferenze salvate o usa il default (Blu + Scura)
+  // Sincronizza lo stato salvato in localStorage in ogni pagina
   const savedColor = localStorage.getItem('site_color');
   const savedMode = localStorage.getItem('site_mode');
   const htmlEl = document.documentElement;
@@ -198,15 +309,10 @@
   if (savedColor) {
     htmlEl.classList.remove('color-blue');
     htmlEl.classList.add(savedColor);
-  } else {
-    htmlEl.classList.add('color-blue');
   }
-
   if (savedMode) {
     htmlEl.classList.remove('mode-dark');
     htmlEl.classList.add(savedMode);
-  } else {
-    htmlEl.classList.add('mode-dark');
   }
 
   const viewToggle = document.getElementById('viewToggle');
@@ -221,3 +327,6 @@
     });
   }
 </script>
+
+</body>
+</html>
