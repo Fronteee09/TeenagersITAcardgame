@@ -144,6 +144,18 @@
   .panel h1 { font-size: 20px; margin-top: 0; color: var(--text-main); }
   .panel p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
   
+  /* Link personalizzato dinamico basato sul tema */
+  .dynamic-link {
+    color: var(--col-main);
+    text-decoration: none;
+    font-weight: bold;
+    transition: filter 0.2s;
+  }
+  .dynamic-link:hover {
+    filter: brightness(1.2);
+    text-decoration: underline;
+  }
+
   .warning {
     margin-top: 18px;
     color: #e3b341;
@@ -308,7 +320,8 @@
   <div id="home" class="panel active">
     <h1>Carte di r/TeenagersITA:</h1>
     <p>Benvenuti sul sito dei giochi di carte legati a TeenagersITA.</p>
-    <p>Questo progetto realizzato interamente da Fronte ★ (<a href="#">u/Unknow_guy21</a>) si basa sul creare un gioco interattivo disponibile a tutti.</p>
+    <!-- LINK AGGIORNATO CON CLASSE DINAMICA E LINK DI REDDIT -->
+    <p>Questo progetto realizzato interamente da Fronte ★ (<a href="https://www.reddit.com/user/Unknow_guy21/" target="_blank" class="dynamic-link">u/Unknow_guy21</a>)[cite: 1] si basa sul creare un gioco interattivo disponibile a tutti.</p>
     <p>Potete trovare ulteriori annunci sulla sezione "annunci" del sito.</p>
     <div class="warning">⚠ Le carte presenti su questo sito sono autorizzate dagli utenti ⚠</div>
   </div>
