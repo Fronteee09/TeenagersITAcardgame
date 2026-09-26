@@ -3,35 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home - Carte di r/TeenagersITA</title>
+<title>Carte - Carte di r/TeenagersITA</title>
 <style>
-  /* --- 1. CONFIGURAZIONE COLORI BASE --- */
+  /* --- 1. VARIABILI COLORI --- */
   :root.color-blue {
     --h-1: #1a2230; --h-2: #111620; --h-3: #0d1118;
     --l-1: #eaf6ff; --l-2: #cfe8fa; --l-3: #dff1fc;
   }
-  :root.color-yellow {
-    --h-1: #fef08a; --h-2: #fde047; --h-3: #eab308;
-    --l-1: #fefce8; --l-2: #fef9c3; --l-3: #fef08a;
-  }
-  :root.color-red {
-    --h-1: #3b1619; --h-2: #260d0f; --h-3: #180608;
-    --l-1: #fff1f2; --l-2: #ffe4e6; --l-3: #fecdd3;
-  }
-  :root.color-green {
-    --h-1: #14281d; --h-2: #0d1a13; --h-3: #08110b;
-    --l-1: #f0fdf4; --l-2: #dcfce7; --l-3: #bbf7d0;
-  }
-  :root.color-gray {
-    --h-1: #1f242d; --h-2: #151921; --h-3: #0d1015;
-    --l-1: #f8fafc; --l-2: #f1f5f9; --l-3: #e2e8f0;
-  }
-  :root.color-purple {
-    --h-1: #281832; --h-2: #1b0f22; --h-3: #110916;
-    --l-1: #faf5ff; --l-2: #f3e8ff; --l-3: #e9d5ff;
-  }
-
-  /* --- 2. CONFIGURAZIONE MODALITÀ SCURA / CHIARA --- */
   :root.mode-dark {
     --bg-grad-1: var(--h-1); --bg-grad-2: var(--h-2); --bg-grad-3: var(--h-3);
     --panel-bg: rgba(22, 27, 34, 0.85);
@@ -48,7 +26,8 @@
     --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(230,242,255,0.8) 50%, rgba(200,225,250,0.8) 51%, rgba(235,245,255,0.9) 100%);
     --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(240,248,255,0.9) 50%, rgba(210,230,255,0.9) 51%, rgba(245,250,255,1) 100%);
   }
-  
+
+  /* --- 2. STRUTTURA BASE --- */
   * { box-sizing: border-box; }
   body {
     margin: 0; 
@@ -70,7 +49,6 @@
     flex-direction: column;
     gap: 10px;
     backdrop-filter: blur(10px);
-    box-shadow: inset -1px 0 0 rgba(255,255,255,0.05);
     z-index: 1000;
     min-height: 100vh;
     flex-shrink: 0;
@@ -87,8 +65,8 @@
     padding: 10px 12px;
     border-radius: 8px;
     font-weight: 500;
-    transition: all 0.2s ease;
     display: block;
+    transition: all 0.2s ease;
   }
   .sidebar a:hover {
     background: var(--aero-btn-hover);
@@ -98,10 +76,9 @@
     background: var(--aero-btn-bg);
     color: var(--text-main);
     border: 1px solid var(--border-color);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  /* --- 4. CONTROLLI FISSI IN ALTO A DESTRA (Uguali per tutte le pagine) --- */
+  /* --- 4. CONTROLLI IN ALTO A DESTRA --- */
   .top-controls { 
     position: fixed; 
     top: 15px; 
@@ -119,9 +96,7 @@
     cursor: pointer; 
     font-size: 14px; 
     font-weight: 600;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 10px rgba(0,0,0,0.3);
     backdrop-filter: blur(6px);
-    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -130,8 +105,6 @@
   .control-btn:hover {
     background: var(--aero-btn-hover);
   }
-
-  /* Menu a tendina impostazioni */
   .settings-dropdown {
     position: absolute;
     top: 45px;
@@ -141,28 +114,15 @@
     border-radius: 10px;
     padding: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
     display: none;
     flex-direction: column;
     gap: 10px;
-    width: 200px;
+    width: 180px;
     z-index: 1300;
+    backdrop-filter: blur(10px);
   }
   .settings-dropdown.show {
     display: flex;
-  }
-  .dropdown-section-title {
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: var(--text-muted);
-    margin-bottom: 2px;
-    letter-spacing: 0.5px;
-  }
-  .dropdown-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
   }
   .dropdown-item {
     background: transparent;
@@ -173,7 +133,6 @@
     border-radius: 6px;
     cursor: pointer;
     font-size: 13px;
-    font-weight: 500;
   }
   .dropdown-item:hover {
     background: var(--aero-btn-hover);
@@ -182,7 +141,7 @@
   /* --- 5. CONTENUTO PRINCIPALE --- */
   .content { 
     flex: 1; 
-    padding: 80px 40px 40px 40px; /* Spazio sopra per non coprire i bottoni fissi */
+    padding: 80px 40px 40px 40px; 
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -194,136 +153,82 @@
     border: 1px solid var(--border-color); 
     border-radius: 12px; 
     padding: 40px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 12px 32px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
   }
   body.mobile-view { flex-direction: column; }
   body.mobile-view .panel { max-width: 400px !important; margin: 60px auto 20px auto; }
   
   .panel h1 { font-size: 26px; margin-top: 0; color: var(--text-main); }
-  .panel p { font-size: 15px; line-height: 1.7; color: var(--text-muted); }
-  .dynamic-link { color: #3b82d6; text-decoration: none; font-weight: bold; }
-  .dynamic-link:hover { text-decoration: underline; }
-  
-  .warning {
-    margin-top: 20px; 
-    color: var(--text-main); 
-    font-weight: bold; 
-    font-size: 14px;
-    background: rgba(227, 179, 65, 0.15); 
-    padding: 12px 16px; 
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-  }
 </style>
 </head>
 <body>
 
-<!-- Sidebar -->
+<!-- Sidebar con "Carte" attivo -->
 <div class="sidebar">
   <h2>TeenagersITAcards</h2>
-  <a href="index.html" class="active">Home</a>
+  <a href="index.html">Home</a>
   <a href="annunci.html">Annunci</a>
-  <a href="carte.html">Carte</a>
+  <a href="carte.html" class="active">Carte</a>
   <a href="gioca.html">Gioca vs Bot</a>
   <a href="account.html">Account</a>
 </div>
 
-<!-- Controlli fissi in alto a destra -->
+<!-- Controlli in alto a destra -->
 <div class="top-controls">
   <button id="viewToggle" class="control-btn">Vista: PC</button>
-  
   <div style="position: relative;">
     <button id="settingsBtn" class="control-btn">⚙ Impostazioni</button>
     <div id="settingsMenu" class="settings-dropdown">
-      
-      <div class="dropdown-section-title">Colore Sfondo</div>
-      <div class="dropdown-group">
-        <button class="dropdown-item" onclick="setColor('color-blue')">🔵 Blu Aero</button>
-        <button class="dropdown-item" onclick="setColor('color-yellow')">🟡 Giallo</button>
-        <button class="dropdown-item" onclick="setColor('color-red')">🔴 Rosso</button>
-        <button class="dropdown-item" onclick="setColor('color-green')">🟢 Verde</button>
-        <button class="dropdown-item" onclick="setColor('color-gray')">⚪ Grigio</button>
-        <button class="dropdown-item" onclick="setColor('color-purple')">🟣 Viola</button>
-      </div>
-
-      <hr style="border: none; border-top: 1px solid var(--border-color); margin: 4px 0;">
-
-      <div class="dropdown-section-title">Modalità</div>
-      <div class="dropdown-group">
-        <button class="dropdown-item" onclick="setMode('mode-dark')">🌙 Scura</button>
-        <button class="dropdown-item" onclick="setMode('mode-light')">☀️ Chiara</button>
-      </div>
-
+      <button class="dropdown-item" onclick="setTheme('dark')">🌙 Tema Scuro</button>
+      <button class="dropdown-item" onclick="setTheme('light')">☀️ Tema Chiaro</button>
     </div>
   </div>
 </div>
 
-<!-- Contenuto -->
+<!-- Contenuto della sezione Carte -->
 <div class="content">
   <div class="panel">
-    <h1>Carte di r/TeenagersITA:</h1>
-    <p>Benvenuti sul sito dei giochi di carte legati a TeenagersITA.</p>
-    <p>Questo progetto realizzato interamente da Fronte ★ (<a href="https://www.reddit.com/user/Unknow_guy21/" target="_blank" class="dynamic-link">u/Unknow_guy21</a>) si basa sul creare un gioco interattivo disponibile a tutti.</p>
-    <div class="warning">⚠ Le carte presenti su questo sito sono autorizzate dagli utenti ⚠</div>
+    <h1>Collezione Carte</h1>
+    <p>Qui puoi vedere tutte le carte disponibili del gioco.</p>
+    <!-- Inserisci qui sotto le tue carte (es. i box delle carte) -->
   </div>
 </div>
 
-<!-- Script comune di gestione -->
+<!-- Script di gestione -->
 <script>
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsMenu = document.getElementById('settingsMenu');
-
   if (settingsBtn && settingsMenu) {
     settingsBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       settingsMenu.classList.toggle('show');
     });
-
     window.addEventListener('click', () => {
       settingsMenu.classList.remove('show');
     });
   }
 
-  function setColor(colorClass) {
-    const htmlEl = document.documentElement;
-    htmlEl.classList.remove('color-blue', 'color-yellow', 'color-red', 'color-green', 'color-gray', 'color-purple');
-    htmlEl.classList.add(colorClass);
-    localStorage.setItem('site_color', colorClass);
+  function setTheme(theme) {
+    if (theme === 'light') {
+      document.documentElement.classList.add('mode-light');
+      localStorage.setItem('site_theme', 'light');
+    } else {
+      document.documentElement.classList.remove('mode-light');
+      localStorage.setItem('site_theme', 'dark');
+    }
     if(settingsMenu) settingsMenu.classList.remove('show');
   }
 
-  function setMode(modeClass) {
-    const htmlEl = document.documentElement;
-    htmlEl.classList.remove('mode-dark', 'mode-light');
-    htmlEl.classList.add(modeClass);
-    localStorage.setItem('site_mode', modeClass);
-    if(settingsMenu) settingsMenu.classList.remove('show');
-  }
-
-  // Sincronizza lo stato salvato in localStorage in ogni pagina
-  const savedColor = localStorage.getItem('site_color');
-  const savedMode = localStorage.getItem('site_mode');
-  const htmlEl = document.documentElement;
-  
-  if (savedColor) {
-    htmlEl.classList.remove('color-blue');
-    htmlEl.classList.add(savedColor);
-  }
-  if (savedMode) {
-    htmlEl.classList.remove('mode-dark');
-    htmlEl.classList.add(savedMode);
+  if (localStorage.getItem('site_theme') === 'light') {
+    document.documentElement.classList.add('mode-light');
   }
 
   const viewToggle = document.getElementById('viewToggle');
   if (viewToggle) {
     viewToggle.addEventListener('click', () => {
       document.body.classList.toggle('mobile-view');
-      if (document.body.classList.contains('mobile-view')) {
-        viewToggle.textContent = 'Vista: Mobile';
-      } else {
-        viewToggle.textContent = 'Vista: PC';
-      }
+      viewToggle.textContent = document.body.classList.contains('mobile-view') ? 'Vista: Mobile' : 'Vista: PC';
     });
   }
 </script>
