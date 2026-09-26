@@ -1,8 +1,18 @@
 <style>
+  /* Palette colori e sfumature stile Windows 7 Aero */
+  :root {
+    --sidebar-grad-start: rgba(26, 34, 48, 0.95);
+    --sidebar-grad-end: rgba(13, 17, 24, 0.95);
+  }
+  html.light {
+    --sidebar-grad-start: rgba(234, 246, 255, 0.95);
+    --sidebar-grad-end: rgba(207, 232, 250, 0.95);
+  }
+
   .sidebar {
     width: 240px;
     min-height: 100vh;
-    background: var(--panel-bg);
+    background: linear-gradient(to bottom, var(--sidebar-grad-start), var(--sidebar-grad-end));
     border-right: 1px solid var(--border-color);
     padding: 25px 0;
     flex-shrink: 0;
