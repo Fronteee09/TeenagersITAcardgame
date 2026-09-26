@@ -60,7 +60,7 @@
     color: var(--text-main);
   }
 
-  /* --- 3. SIDEBAR INTEGRATA --- */
+  /* --- 3. SIDEBAR --- */
   .sidebar {
     width: 240px;
     background: var(--panel-bg);
@@ -101,11 +101,11 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  /* --- 4. CONTROLLI IN ALTO A DESTRA --- */
+  /* --- 4. CONTROLLI FISSI IN ALTO A DESTRA (Uguali per tutte le pagine) --- */
   .top-controls { 
     position: fixed; 
     top: 15px; 
-    right: 20px; 
+    right: 25px; 
     display: flex; 
     gap: 10px; 
     z-index: 1200; 
@@ -182,7 +182,7 @@
   /* --- 5. CONTENUTO PRINCIPALE --- */
   .content { 
     flex: 1; 
-    padding: 50px; 
+    padding: 80px 40px 40px 40px; /* Spazio sopra per non coprire i bottoni fissi */
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -219,7 +219,7 @@
 </head>
 <body>
 
-<!-- Sidebar fissa e integrata -->
+<!-- Sidebar -->
 <div class="sidebar">
   <h2>TeenagersITAcards</h2>
   <a href="index.html" class="active">Home</a>
@@ -229,7 +229,7 @@
   <a href="account.html">Account</a>
 </div>
 
-<!-- Controlli in alto a destra -->
+<!-- Controlli fissi in alto a destra -->
 <div class="top-controls">
   <button id="viewToggle" class="control-btn">Vista: PC</button>
   
@@ -259,7 +259,7 @@
   </div>
 </div>
 
-<!-- Contenuto della pagina -->
+<!-- Contenuto -->
 <div class="content">
   <div class="panel">
     <h1>Carte di r/TeenagersITA:</h1>
@@ -269,7 +269,7 @@
   </div>
 </div>
 
-<!-- Script per i pulsanti, i colori e il salvataggio -->
+<!-- Script comune di gestione -->
 <script>
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsMenu = document.getElementById('settingsMenu');
@@ -301,7 +301,7 @@
     if(settingsMenu) settingsMenu.classList.remove('show');
   }
 
-  // Ripristina subito le preferenze salvate (o default scuro/blu)
+  // Sincronizza lo stato salvato in localStorage in ogni pagina
   const savedColor = localStorage.getItem('site_color');
   const savedMode = localStorage.getItem('site_mode');
   const htmlEl = document.documentElement;
