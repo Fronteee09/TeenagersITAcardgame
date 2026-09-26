@@ -178,7 +178,6 @@
   .post-content { font-size: 13px; line-height: 1.6; color: var(--text-main); margin-bottom: 15px; }
   .post-actions { display: flex; justify-content: flex-end; gap: 8px; }
   
-  /* Bottoni Like e Dislike personalizzati */
   .vote-btn {
     background: linear-gradient(to bottom, rgba(80, 100, 130, 0.4), rgba(30, 45, 65, 0.6));
     border: 1px solid var(--border-color);
@@ -212,7 +211,6 @@
 
   .comment-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
   .avatar { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; }
-  .avatar.custom { background: radial-gradient(circle at 30% 30%, #9b59b6, #512e5f); }
   .comment-text .user { font-weight: bold; color: var(--text-main); }
   .comment-text .msg { color: var(--text-muted); margin-top: 2px; }
   .comment-input-area { display: flex; gap: 8px; margin-top: 10px; }
@@ -229,10 +227,11 @@
 </head>
 <body>
 
+<!-- CONTROLLI IN ALTO A DESTRA (UNICODE: OCCHIO E PENNELLO) -->
 <div class="top-controls">
-  <button id="themeToggle" class="control-btn" title="Cambia Tema Scuro/Chiaro">👁️</button>
+  <button id="themeToggle" class="control-btn" title="Cambia Tema Scuro/Chiaro">&#x1F441;</button>
   <div style="position: relative;">
-    <button id="paintToggle" class="control-btn" title="Cambia Colori Sito">🎨</button>
+    <button id="paintToggle" class="control-btn" title="Cambia Colori Sito">&#x1F3A8;</button>
     <div id="colorDropdown" class="color-dropdown">
       <div class="color-option opt-blue" data-color="theme-blue">Blu</div>
       <div class="color-option opt-green" data-color="theme-green">Verde</div>
@@ -345,17 +344,17 @@
     });
   });
 
-  // Toggle Occhio (Scuro / Chiaro)
+  // Toggle Occhio (Scuro / Chiaro) con Unicode
   const themeToggle = document.getElementById('themeToggle');
   const htmlElement = document.documentElement;
 
   themeToggle.addEventListener('click', () => {
     if (htmlElement.classList.contains('dark')) {
       htmlElement.classList.replace('dark', 'light');
-      themeToggle.textContent = '🌙';
+      themeToggle.innerHTML = '&#x25D3;'; // Simbolo unicode per tema chiaro/luna
     } else {
       htmlElement.classList.replace('light', 'dark');
-      themeToggle.textContent = '👁️';
+      themeToggle.innerHTML = '&#x1F441;'; // Simbolo unicode occhio
     }
   });
 
@@ -387,12 +386,12 @@
 
   likeBtn.addEventListener('click', () => {
     likeBtn.classList.toggle('liked');
-    dislikeBtn.classList.remove('disliked'); // Rimuovi dislike se attivo
+    dislikeBtn.classList.remove('disliked');
   });
 
   dislikeBtn.addEventListener('click', () => {
     dislikeBtn.classList.toggle('disliked');
-    likeBtn.classList.remove('liked'); // Rimuovi like se attivo
+    likeBtn.classList.remove('liked');
   });
 
   // Logica per aggiungere nuovi commenti
@@ -402,14 +401,14 @@
 
   function aggiungiCommento() {
     const testo = commentInput.value.trim();
-    if (testo === "") return; // Non inviare se vuoto
+    if (testo === "") return;
 
-    // Crea elementi del commento
     const commentItem = document.createElement('div');
     commentItem.className = 'comment-item';
 
     const avatar = document.createElement('div');
-    avatar.className = 'avatar custom';
+    avatar.className = 'avatar';
+    avatar.style.background = 'radial-gradient(circle at 30% 30%, #9b59b6, #512e5f)';
 
     const commentText = document.createElement('div');
     commentText.className = 'comment-text';
@@ -422,17 +421,14 @@
     msgDiv.className = 'msg';
     msgDiv.textContent = testo;
 
-    // Assembla la struttura
     commentText.appendChild(userDiv);
     commentText.appendChild(msgDiv);
     commentItem.appendChild(avatar);
     commentItem.appendChild(commentText);
 
-    // Aggiungi alla lista e scrolla in basso
     commentsList.appendChild(commentItem);
     commentsList.scrollTop = commentsList.scrollHeight;
 
-    // Pulisci l'input
     commentInput.value = '';
   }
 
