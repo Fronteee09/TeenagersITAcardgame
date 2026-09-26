@@ -37,6 +37,7 @@
     text-decoration: none;
     font-size: 13px;
     transition: background-color 0.2s;
+    cursor: pointer;
   }
   .sidebar a:hover {
     background: rgba(255,255,255,0.5);
@@ -52,12 +53,16 @@
     padding: 40px 50px;
   }
   .panel {
+    display: none; /* Nasconde tutti i pannelli di default */
     max-width: 620px;
     background: linear-gradient(to bottom, #ffffff 0%, #eaf6ff 45%, #d9edfb 50%, #ffffff 100%);
     border: 1px solid #7fb8e0;
     border-radius: 16px;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 7px rgba(0,0,0,0.15);
     padding: 24px 28px;
+  }
+  .panel.active {
+    display: block; /* Mostra solo il pannello attivo */
   }
   .panel h1 {
     font-size: 20px;
@@ -84,21 +89,65 @@
 
 <div class="sidebar">
   <h2>TeenagersITA Cards</h2>
-  <a href="index.html" class="active">Home</a>
-  <a href="annunci.html">Annunci</a>
-  <a href="#">Carte</a>
-  <a href="#">Gioca vs Bot</a>
+  <a data-target="home" class="active">Home</a>
+  <a data-target="annunci">Annunci</a>
+  <a data-target="carte">Carte</a>
+  <a data-target="gioca">Gioca vs Bot</a>
 </div>
 
 <div class="content">
-  <div class="panel">
+  <!-- SCHEDA HOME -->
+  <div id="home" class="panel active">
     <h1>Carte di r/TeenagersITA:</h1>
     <p>Benvenuti sul sito dei giochi di carte legati a TeenagersITA.</p>
     <p>Questo progetto realizzato interamente da Fronte ★ (<a href="#">u/Unknow_guy21</a>) si basa sul creare un gioco interattivo disponibile a tutti.</p>
     <p>Potete trovare ulteriori annunci sulla sezione "annunci" del sito.</p>
     <div class="warning">⚠ Le carte presenti su questo sito sono autorizzate dagli utenti ⚠</div>
   </div>
+
+  <!-- SCHEDA ANNUNCI -->
+  <div id="annunci" class="panel">
+    <h1>Annunci & Novità</h1>
+    <p>Qui troverai tutti gli aggiornamenti sul progetto, le patch notes e le novità in arrivo sulle carte di TeenagersITA.</p>
+    <p>Resta sintonizzato per non perderti nessun evento!</p>
+  </div>
+
+  <!-- SCHEDA CARTE -->
+  <div id="carte" class="panel">
+    <h1>Galleria Carte</h1>
+    <p>In questa sezione potrai visualizzare tutte le carte collezionabili create finora per la community.</p>
+    <p>Presto disponibile la lista completa con statistiche e rarità!</p>
+  </div>
+
+  <!-- SCHEDA GIOCA VS BOT -->
+  <div id="gioca" class="panel">
+    <h1>Gioca vs Bot</h1>
+    <p>Mettiti alla prova! Presto potrai testare il tuo mazzo sfidando un avversario gestito dal computer direttamente qui sul sito.</p>
+  </div>
 </div>
+
+<script>
+  // Seleziona tutti i link della sidebar e tutti i pannelli di contenuto
+  const links = document.querySelectorAll('.sidebar a');
+  const panels = document.querySelectorAll('.panel');
+
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // Evita comportamenti strani dei link standard
+
+      // Rimuovi la classe 'active' da tutti i link e pannelli
+      links.forEach(l => l.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+
+      // Aggiungi la classe 'active' al link cliccato
+      link.classList.add('active');
+
+      // Trova l'attributo data-target e mostra il pannello corrispondente
+      const targetId = link.getAttribute('data-target');
+      document.getElementById(targetId).classList.add('active');
+    });
+  });
+</script>
 
 </body>
 </html>
