@@ -6,22 +6,20 @@
 <style>
   :root {
     --bg-grad-1: #1a2230; --bg-grad-2: #111620; --bg-grad-3: #0d1118;
-    --sidebar-grad-1: rgba(35, 45, 60, 0.9); --sidebar-grad-2: rgba(20, 26, 36, 0.95);
     --panel-grad-1: rgba(30, 38, 50, 0.85); --panel-grad-2: rgba(18, 24, 33, 0.9);
     --text-main: #e0e6ed; --text-muted: #b8c7d9; --border-color: rgba(255, 255, 255, 0.15);
   }
   html.light {
     --bg-grad-1: #eaf6ff; --bg-grad-2: #cfe8fa; --bg-grad-3: #dff1fc;
-    --sidebar-grad-1: rgba(245, 251, 271, 0.9); --sidebar-grad-2: rgba(217, 237, 251, 0.95);
     --panel-grad-1: rgba(255, 255, 255, 0.9); --panel-grad-2: rgba(234, 246, 255, 0.9);
     --text-main: #1a1a1a; --text-muted: #2a2a2a; --border-color: rgba(127, 184, 224, 0.4);
   }
-  html.theme-blue { --col-main: #3b82d6; --col-dark: #1c529c; --col-glow: rgba(59, 130, 214, 0.6); }
-  html.theme-green { --col-main: #2ecc71; --col-dark: #27ae60; --col-glow: rgba(46, 204, 113, 0.6); }
-  html.theme-red { --col-main: #e74c3c; --col-dark: #c0392b; --col-glow: rgba(231, 76, 60, 0.6); }
-  html.theme-yellow { --col-main: #f1c40f; --col-dark: #d35400; --col-glow: rgba(241, 196, 15, 0.6); }
-  html.theme-gray { --col-main: #7f8c8d; --col-dark: #34495e; --col-glow: rgba(127, 140, 141, 0.6); }
-  html.theme-purple { --col-main: #9b59b6; --col-dark: #8e44ad; --col-glow: rgba(155, 89, 182, 0.6); }
+  html.theme-blue { --col-main: #3b82d6; --col-dark: #1c529c; }
+  html.theme-green { --col-main: #2ecc71; --col-dark: #27ae60; }
+  html.theme-red { --col-main: #e74c3c; --col-dark: #c0392b; }
+  html.theme-yellow { --col-main: #f1c40f; --col-dark: #d35400; }
+  html.theme-gray { --col-main: #7f8c8d; --col-dark: #34495e; }
+  html.theme-purple { --col-main: #9b59b6; --col-dark: #8e44ad; }
 
   * { box-sizing: border-box; }
   body {
@@ -34,21 +32,6 @@
     background: linear-gradient(to bottom, var(--col-main), var(--col-dark));
     border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 8px 12px;
     border-radius: 8px; cursor: pointer; font-size: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  }
-  .sidebar {
-    width: 200px; flex-shrink: 0;
-    background: linear-gradient(to bottom, var(--sidebar-grad-1) 0%, var(--sidebar-grad-2) 100%);
-    border-right: 1px solid var(--border-color); padding: 18px 0;
-  }
-  .sidebar h2 { font-size: 15px; padding: 0 18px; margin: 0 0 16px; color: var(--text-main); }
-  .sidebar a {
-    display: block; margin: 4px 10px; padding: 9px 12px; border-radius: 6px;
-    color: var(--text-muted); text-decoration: none; font-size: 13px;
-  }
-  .sidebar a:hover { background: rgba(255, 255, 255, 0.08); color: var(--text-main); }
-  .sidebar a.active {
-    background: linear-gradient(to bottom, var(--col-main), var(--col-dark));
-    color: #ffffff; font-weight: bold; border: 1px solid rgba(255, 255, 255, 0.3);
   }
   .content { flex: 1; padding: 40px 50px; }
   .panel {
@@ -72,14 +55,8 @@
   <button id="themeToggle" class="control-btn">&#x1F441;</button>
 </div>
 
-<div class="sidebar">
-  <h2>TeenagersITAcards</h2>
-  <a href="index.html" class="active">Home</a>
-  <a href="annunci.html">Annunci</a>
-  <a href="carte.html">Carte</a>
-  <a href="giocacolbot.html">Gioca vs Bot</a>
-  <a href="login.html">Account</a>
-</div>
+<!-- Qui verrà inserita automaticamente la sidebar esterna -->
+<div id="sidebar-container"></div>
 
 <div class="content">
   <div class="panel">
@@ -91,6 +68,14 @@
 </div>
 
 <script>
+  // Caricamento dinamico della sidebar
+  fetch('sidebar.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('sidebar-container').innerHTML = data;
+    });
+
+  // Gestione Tema (Dark/Light)
   const htmlElement = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('site_theme');
