@@ -1,96 +1,43 @@
-<!DOCTYPE html>
-<html lang="it" class="dark theme-blue">
-<head>
-<meta charset="UTF-8">
-<title>Home - Carte di r/TeenagersITA</title>
 <style>
-  :root {
-    --bg-grad-1: #1a2230; --bg-grad-2: #111620; --bg-grad-3: #0d1118;
-    --panel-grad-1: rgba(30, 38, 50, 0.85); --panel-grad-2: rgba(18, 24, 33, 0.9);
-    --text-main: #e0e6ed; --text-muted: #b8c7d9; --border-color: rgba(255, 255, 255, 0.15);
+  .sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    background: linear-gradient(to bottom, rgba(35, 45, 60, 0.9) 0%, rgba(20, 26, 36, 0.95) 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 18px 0;
   }
-  html.light {
-    --bg-grad-1: #eaf6ff; --bg-grad-2: #cfe8fa; --bg-grad-3: #dff1fc;
-    --panel-grad-1: rgba(255, 255, 255, 0.9); --panel-grad-2: rgba(234, 246, 255, 0.9);
-    --text-main: #1a1a1a; --text-muted: #2a2a2a; --border-color: rgba(127, 184, 224, 0.4);
+  .sidebar h2 { 
+    font-size: 15px; 
+    padding: 0 18px; 
+    margin: 0 0 16px; 
+    color: #e0e6ed; 
   }
-  html.theme-blue { --col-main: #3b82d6; --col-dark: #1c529c; }
-  html.theme-green { --col-main: #2ecc71; --col-dark: #27ae60; }
-  html.theme-red { --col-main: #e74c3c; --col-dark: #c0392b; }
-  html.theme-yellow { --col-main: #f1c40f; --col-dark: #d35400; }
-  html.theme-gray { --col-main: #7f8c8d; --col-dark: #34495e; }
-  html.theme-purple { --col-main: #9b59b6; --col-dark: #8e44ad; }
-
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; min-height: 100vh;
-    background: linear-gradient(to bottom, var(--bg-grad-1) 0%, var(--bg-grad-2) 50%, var(--bg-grad-3) 100%);
-    color: var(--text-main);
+  .sidebar a {
+    display: block; 
+    margin: 4px 10px; 
+    padding: 9px 12px; 
+    border-radius: 6px;
+    color: #b8c7d9; 
+    text-decoration: none; 
+    font-size: 13px;
   }
-  .top-controls { position: fixed; top: 15px; right: 20px; display: flex; gap: 10px; z-index: 1000; }
-  .control-btn {
-    background: linear-gradient(to bottom, var(--col-main), var(--col-dark));
-    border: 1px solid rgba(255, 255, 255, 0.3); color: white; padding: 8px 12px;
-    border-radius: 8px; cursor: pointer; font-size: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  .sidebar a:hover { 
+    background: rgba(255, 255, 255, 0.08); 
+    color: #e0e6ed; 
   }
-  .content { flex: 1; padding: 40px 50px; }
-  .panel {
-    max-width: 900px; background: linear-gradient(to bottom, var(--panel-grad-1) 0%, var(--panel-grad-2) 100%);
-    border: 1px solid var(--border-color); border-radius: 10px; padding: 24px 28px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-  }
-  .panel h1 { font-size: 20px; margin-top: 0; color: var(--text-main); }
-  .panel p { font-size: 14px; line-height: 1.7; color: var(--text-muted); }
-  .dynamic-link { color: var(--col-main); text-decoration: none; font-weight: bold; }
-  .warning {
-    margin-top: 18px; color: #e3b341; font-weight: bold; font-size: 13px;
-    background: rgba(227, 179, 65, 0.1); padding: 8px 12px; border-radius: 6px;
-    border: 1px solid rgba(227, 179, 65, 0.2);
+  .sidebar a.active {
+    background: linear-gradient(to bottom, var(--col-main, #3b82d6), var(--col-dark, #1c529c));
+    color: #ffffff; 
+    font-weight: bold; 
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 </style>
-</head>
-<body>
 
-<div class="top-controls">
-  <button id="themeToggle" class="control-btn">&#x1F441;</button>
+<div class="sidebar">
+  <h2>TeenagersITAcards</h2>
+  <a href="index.html">Home</a>
+  <a href="annunci.html">Annunci</a>
+  <a href="carte.html">Carte</a>
+  <a href="giocacolbot.html">Gioca vs Bot</a>
+  <a href="login.html">Account</a>
 </div>
-
-<!-- Qui verrà inserita automaticamente la sidebar esterna -->
-<div id="sidebar-container"></div>
-
-<div class="content">
-  <div class="panel">
-    <h1>Carte di r/TeenagersITA:</h1>
-    <p>Benvenuti sul sito dei giochi di carte legati a TeenagersITA.</p>
-    <p>Questo progetto realizzato interamente da Fronte ★ (<a href="https://www.reddit.com/user/Unknow_guy21/" target="_blank" class="dynamic-link">u/Unknow_guy21</a>) si basa sul creare un gioco interattivo disponibile a tutti.</p>
-    <div class="warning">⚠ Le carte presenti su questo sito sono autorizzate dagli utenti ⚠</div>
-  </div>
-</div>
-
-<script>
-  // Caricamento dinamico della sidebar
-  fetch('sidebar.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('sidebar-container').innerHTML = data;
-    });
-
-  // Gestione Tema (Dark/Light)
-  const htmlElement = document.documentElement;
-  const themeToggle = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('site_theme');
-  if (savedTheme) {
-    htmlElement.className = savedTheme;
-    themeToggle.innerHTML = (savedTheme === 'light') ? '&#x25D3;' : '&#x1F441;';
-  }
-  themeToggle.addEventListener('click', () => {
-    let currentTheme = htmlElement.classList.contains('light') ? 'light' : 'dark';
-    let newTheme = (currentTheme === 'light') ? 'dark' : 'light';
-    htmlElement.classList.replace(currentTheme, newTheme);
-    themeToggle.innerHTML = (newTheme === 'light') ? '&#x25D3;' : '&#x1F441;';
-    localStorage.setItem('site_theme', newTheme);
-  });
-</script>
-
-</body>
-</html>
