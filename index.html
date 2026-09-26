@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<title>Carte di r/TeenagersITA</title>
+<title>Carte di r/TeenagersITA - Aero Dark</title>
 <style>
   * {
     box-sizing: border-box;
@@ -12,76 +12,90 @@
     font-family: 'Segoe UI', sans-serif;
     display: flex;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #eaf6ff 0%, #cfe8fa 30%, #a9d5f2 60%, #dff1fc 100%);
+    /* Sfondo scuro con sfumatura stile Aero Dark */
+    background: linear-gradient(to bottom, #1a2230 0%, #111620 50%, #0d1118 100%);
+    color: #e0e6ed;
   }
   .sidebar {
     width: 200px;
     flex-shrink: 0;
-    background: linear-gradient(to bottom, #f5fbff 0%, #d9edfb 45%, #b8def7 50%, #eaf6ff 100%);
-    border-right: 1px solid #7fb8e0;
-    box-shadow: inset -1px 0 0 rgba(255,255,255,0.5);
+    /* Barra laterale effetto vetro scuro */
+    background: linear-gradient(to bottom, rgba(35, 45, 60, 0.9) 0%, rgba(20, 26, 36, 0.95) 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.05), 2px 0 10px rgba(0,0,0,0.5);
     padding: 18px 0;
   }
   .sidebar h2 {
     font-size: 15px;
     padding: 0 18px;
     margin: 0 0 16px;
-    color: #1a1a1a;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
   }
   .sidebar a {
     display: block;
     margin: 4px 10px;
     padding: 9px 12px;
-    border-radius: 10px;
-    color: #2a2a2a;
+    border-radius: 6px;
+    color: #b8c7d9;
     text-decoration: none;
     font-size: 13px;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
     cursor: pointer;
   }
   .sidebar a:hover {
-    background: rgba(255,255,255,0.5);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
   }
   .sidebar a.active {
-    background: linear-gradient(to bottom, #6fb7e8, #3a8fc7);
+    /* Stile Aero attivo con bagliore azzurro scuro */
+    background: linear-gradient(to bottom, #3b82d6, #1c529c);
     color: #ffffff;
     font-weight: bold;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 8px rgba(59, 130, 214, 0.6);
   }
   .content {
     flex: 1;
     padding: 40px 50px;
   }
   .panel {
-    display: none; /* Nasconde tutti i pannelli di default */
+    display: none;
     max-width: 620px;
-    background: linear-gradient(to bottom, #ffffff 0%, #eaf6ff 45%, #d9edfb 50%, #ffffff 100%);
-    border: 1px solid #7fb8e0;
-    border-radius: 16px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 7px rgba(0,0,0,0.15);
+    /* Pannello stile finestra Aero Glass scura */
+    background: linear-gradient(to bottom, rgba(30, 38, 50, 0.85) 0%, rgba(18, 24, 33, 0.9) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 8px 24px rgba(0, 0, 0, 0.6);
     padding: 24px 28px;
+    backdrop-filter: blur(10px);
   }
   .panel.active {
-    display: block; /* Mostra solo il pannello attivo */
+    display: block;
   }
   .panel h1 {
     font-size: 20px;
     margin-top: 0;
-    color: #1a1a1a;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
   }
   .panel p {
     font-size: 14px;
     line-height: 1.7;
-    color: #2a2a2a;
+    color: #b8c7d9;
   }
   .panel a {
-    color: #1a6fc4;
+    color: #58a6ff;
   }
   .warning {
     margin-top: 18px;
-    color: #b5730f;
+    color: #e3b341;
     font-weight: bold;
     font-size: 13px;
+    background: rgba(227, 179, 65, 0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(227, 179, 65, 0.2);
   }
 </style>
 </head>
@@ -127,22 +141,18 @@
 </div>
 
 <script>
-  // Seleziona tutti i link della sidebar e tutti i pannelli di contenuto
   const links = document.querySelectorAll('.sidebar a');
   const panels = document.querySelectorAll('.panel');
 
   links.forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault(); // Evita comportamenti strani dei link standard
+      e.preventDefault();
 
-      // Rimuovi la classe 'active' da tutti i link e pannelli
       links.forEach(l => l.classList.remove('active'));
       panels.forEach(p => p.classList.remove('active'));
 
-      // Aggiungi la classe 'active' al link cliccato
       link.classList.add('active');
 
-      // Trova l'attributo data-target e mostra il pannello corrispondente
       const targetId = link.getAttribute('data-target');
       document.getElementById(targetId).classList.add('active');
     });
