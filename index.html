@@ -67,3 +67,175 @@
   .header {
     display: flex;
     align-items: center;
+    gap: 11px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #9cc7e6;
+    white-space: nowrap;
+  }
+  .name { font-size: 14px; font-weight: bold; color: #1a1a1a; }
+  .username { font-size: 11px; color: #4a4a4a; }
+  .role {
+    font-size: 10px; font-weight: bold; color: #ffffff;
+    background: linear-gradient(to bottom, #6fb7e8, #3a8fc7);
+    padding: 2px 7px; border-radius: 7px; border: 1px solid #2d6fa3;
+  }
+  .datetime { font-size: 10px; color: #5a5a5a; }
+  .sep { color: #7fa8c0; font-size: 11px; }
+  .body { padding: 14px 16px; font-size: 14px; line-height: 1.55; color: #1a1a1a; }
+  .footer { display: flex; justify-content: flex-end; padding: 9px 16px 14px; }
+  .bar {
+    display: flex; gap: 7px; padding: 6px 9px; border-radius: 18px;
+    background: linear-gradient(to bottom, #ffffff 0%, #e4f2fc 45%, #c6e6fa 50%, #f0f9ff 100%);
+    border: 1px solid #7fb8e0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .btn {
+    cursor: pointer; width: 32px; height: 32px; display: flex;
+    align-items: center; justify-content: center; border-radius: 50%;
+  }
+  .btn:hover { background-color: rgba(255,255,255,0.5); }
+  .btn svg { width: 17px; height: 17px; fill: #606060; }
+  .btn.like.active svg { fill: #4CAF50; }
+  .btn.unlike.active svg { fill: #f44336; }
+
+  /* --- Commenti --- */
+  .comments {
+    width: 380px;
+    border-radius: 16px;
+    background: linear-gradient(to bottom, #f5fbff 0%, #d9edfb 45%, #b8def7 50%, #eaf6ff 100%);
+    border: 1px solid #7fb8e0;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 7px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+  .title { padding: 12px 16px; font-size: 13px; font-weight: bold; color: #1a1a1a; border-bottom: 1px solid #9cc7e6; }
+  .comment { display: flex; gap: 10px; padding: 10px 16px; border-bottom: 1px solid #cfe6f7; align-items: flex-start; }
+  .avatar {
+    width: 32px; height: 32px; min-width: 32px; border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.2);
+  }
+  .avatar.orange { background: radial-gradient(circle at 35% 30%, #ffb066, #e8720c); }
+  .avatar.green  { background: radial-gradient(circle at 35% 30%, #8fe08f, #2e9e2e); }
+  .avatar.blue   { background: radial-gradient(circle at 35% 30%, #7fc2ff, #1a6fc4); }
+  .c-body { display: flex; flex-direction: column; }
+  .c-name { font-size: 12px; font-weight: bold; color: #1a1a1a; }
+  .c-text { font-size: 13px; color: #2a2a2a; margin-top: 2px; }
+  .add { display: flex; gap: 8px; padding: 12px 16px; align-items: center; }
+  .add input {
+    flex: 1; padding: 7px 10px; border-radius: 14px; border: 1px solid #7fb8e0;
+    background: linear-gradient(to bottom, #ffffff, #eaf6ff); font-size: 12px; outline: none;
+  }
+  .add button {
+    padding: 7px 14px; border-radius: 14px; border: 1px solid #2d6fa3;
+    background: linear-gradient(to bottom, #6fb7e8, #3a8fc7); color: #fff;
+    font-size: 12px; font-weight: bold; cursor: pointer;
+  }
+  .add button:hover { filter: brightness(1.08); }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>TeenagersITA Cards</h2>
+  <a href="index.html">Home</a>
+  <a href="#" class="active">Annunci</a>
+  <a href="#">Carte</a>
+  <a href="#">Gioca vs Bot</a>
+</div>
+
+<div class="content">
+
+  <div class="post">
+    <div class="header">
+      <span class="name">Fronte ★</span>
+      <span class="username">u/unknow_guy21</span>
+      <span class="role">Dev</span>
+      <span class="sep">|</span>
+      <span class="datetime">25/09/2026 · 16:31</span>
+    </div>
+    <div class="body">
+      Benvenuti! Qui visualizzerete notizie, tutte le carte esistenti al momento e i match con il "bot". Il progetto è stato sviluppato interamente da me e supportato dai mod di r/TeenagersITA. Ricordiamo che gli utenti mostrati nelle carte sono coloro che ci hanno dato il consenso di farli apparire. Buon divertimento a tutti!
+    </div>
+    <div class="footer">
+      <div class="bar">
+        <div class="btn like" onclick="toggle('like')">
+          <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+        </div>
+        <div class="btn unlike" onclick="toggle('unlike')">
+          <svg viewBox="0 0 24 24" style="transform: rotate(180deg);"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comments">
+    <div class="title">Commenti</div>
+    <div id="list">
+      <div class="comment">
+        <div class="avatar orange"></div>
+        <div class="c-body">
+          <div class="c-name">Clipp3r</div>
+          <div class="c-text">ZIOPERA che progetto ahhhh!</div>
+        </div>
+      </div>
+      <div class="comment">
+        <div class="avatar green"></div>
+        <div class="c-body">
+          <div class="c-name">Bho_76</div>
+          <div class="c-text">bho</div>
+        </div>
+      </div>
+      <div class="comment">
+        <div class="avatar blue"></div>
+        <div class="c-body">
+          <div class="c-name">Aliexpress final boss</div>
+          <div class="c-text">WOW! lo vendo!</div>
+        </div>
+      </div>
+    </div>
+    <div class="add">
+      <input type="text" id="newComment" placeholder="Scrivi un commento...">
+      <button onclick="addComment()">Invia</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggle(type) {
+  const like = document.querySelector('.like');
+  const unlike = document.querySelector('.unlike');
+  if (type === 'like') {
+    like.classList.toggle('active');
+    unlike.classList.remove('active');
+  } else {
+    unlike.classList.toggle('active');
+    like.classList.remove('active');
+  }
+}
+
+function addComment() {
+  const input = document.getElementById('newComment');
+  const text = input.value.trim();
+  if (text === '') return;
+  const list = document.getElementById('list');
+  const div = document.createElement('div');
+  div.className = 'comment';
+  div.innerHTML = `
+    <div class="avatar" style="background: radial-gradient(circle at 35% 30%, #d0d0d0, #9a9a9a);"></div>
+    <div class="c-body">
+      <div class="c-name">Tu</div>
+      <div class="c-text"></div>
+    </div>
+  `;
+  div.querySelector('.c-text').textContent = text;
+  list.appendChild(div);
+  input.value = '';
+}
+
+document.getElementById('newComment').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') addComment();
+});
+</script>
+
+</body>
+</html>
