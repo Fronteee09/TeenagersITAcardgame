@@ -1,73 +1,215 @@
+<!-- Stili della Sidebar e dei Controlli Globali -->
 <style>
-  /* Palette colori e sfumature stile Windows 7 Aero */
-  :root {
-    --sidebar-grad-start: rgba(26, 34, 48, 0.95);
-    --sidebar-grad-end: rgba(13, 17, 24, 0.95);
-  }
-  html.light {
-    --sidebar-grad-start: rgba(234, 246, 255, 0.95);
-    --sidebar-grad-end: rgba(207, 232, 250, 0.95);
-  }
-
   .sidebar {
     width: 240px;
-    min-height: 100vh;
-    background: linear-gradient(to bottom, var(--sidebar-grad-start), var(--sidebar-grad-end));
+    background: var(--panel-bg);
     border-right: 1px solid var(--border-color);
-    padding: 25px 0;
-    flex-shrink: 0;
+    padding: 20px 15px;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
+    gap: 10px;
     backdrop-filter: blur(10px);
-    box-shadow: inset -1px 0 0 rgba(255,255,255,0.1), 4px 0 15px rgba(0,0,0,0.2);
+    box-shadow: inset -1px 0 0 rgba(255,255,255,0.05);
     z-index: 1000;
   }
   .sidebar h2 {
     font-size: 16px;
-    padding: 0 20px;
-    margin: 0 0 20px;
     color: var(--text-main);
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-  }
-  .sidebar-links {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 0 12px;
+    margin: 0 0 15px 10px;
+    font-weight: 700;
   }
   .sidebar a {
-    display: block;
-    padding: 10px 14px;
-    border-radius: 8px;
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
     font-weight: 500;
-    border: 1px solid transparent;
     transition: all 0.2s ease;
   }
   .sidebar a:hover {
     background: var(--aero-btn-hover);
     color: var(--text-main);
-    border-color: var(--border-color);
   }
   .sidebar a.active {
     background: var(--aero-btn-bg);
     color: var(--text-main);
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  /* Controlli in alto a destra (presenti ovunque grazie alla sidebar) */
+  .top-controls { 
+    position: fixed; 
+    top: 15px; 
+    right: 20px; 
+    display: flex; 
+    gap: 10px; 
+    z-index: 1200; 
+  }
+  .control-btn {
+    background: var(--aero-btn-bg);
+    border: 1px solid var(--border-color); 
+    color: var(--text-main); 
+    padding: 8px 14px;
+    border-radius: 8px; 
+    cursor: pointer; 
+    font-size: 14px; 
+    font-weight: 600;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 10px rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .control-btn:hover {
+    background: var(--aero-btn-hover);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 12px rgba(0,0,0,0.4);
+  }
+
+  /* Menu a tendina impostazioni */
+  .settings-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 200px;
+  }
+  .settings-dropdown.show {
+    display: flex;
+  }
+  .dropdown-section-title {
+    font-size: 11px;
+    text-transform: uppercase;
     font-weight: bold;
-    border-color: var(--border-color);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 5px rgba(0,0,0,0.15);
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+  }
+  .dropdown-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .dropdown-item {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    text-align: left;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .dropdown-item:hover {
+    background: var(--aero-btn-hover);
   }
 </style>
 
+<!-- Struttura HTML della Sidebar -->
 <div class="sidebar">
-  <h2>TeenagersITAcards</h2>
-  <div class="sidebar-links">
-    <a href="index.html">Home</a>
-    <a href="annunci.html">Annunci</a>
-    <a href="carte.html">Carte</a>
-    <a href="gioca.html">Gioca vs Bot</a>
-    <a href="login.html">Account</a>
+  <h2>r/TeenagersITA</h2>
+  <a href="index.html">Home</a>
+  <a href="carte.html">Carte</a>
+</div>
+
+<!-- Controlli Globali in alto a destra -->
+<div class="top-controls">
+  <button id="viewToggle" class="control-btn">Vista: PC</button>
+  
+  <div style="position: relative;">
+    <button id="settingsBtn" class="control-btn">⚙ Impostazioni</button>
+    <div id="settingsMenu" class="settings-dropdown">
+      
+      <!-- Scelta Colore Base -->
+      <div class="dropdown-section-title">Colore Sfondo</div>
+      <div class="dropdown-group">
+        <button class="dropdown-item" onclick="setColor('color-blue')">🔵 Blu Aero</button>
+        <button class="dropdown-item" onclick="setColor('color-yellow')">🟡 Giallo</button>
+        <button class="dropdown-item" onclick="setColor('color-red')">🔴 Rosso</button>
+        <button class="dropdown-item" onclick="setColor('color-green')">🟢 Verde</button>
+        <button class="dropdown-item" onclick="setColor('color-gray')">⚪ Grigio</button>
+        <button class="dropdown-item" onclick="setColor('color-purple')">🟣 Viola</button>
+      </div>
+
+      <hr style="border: none; border-top: 1px solid var(--border-color); margin: 4px 0;">
+
+      <!-- Scelta Modalità Scuro / Chiaro -->
+      <div class="dropdown-section-title">Modalità</div>
+      <div class="dropdown-group">
+        <button class="dropdown-item" onclick="setMode('mode-dark')">🌙 Scura</button>
+        <button class="dropdown-item" onclick="setMode('mode-light')">☀️ Chiara</button>
+      </div>
+
+    </div>
   </div>
 </div>
+
+<!-- Script per la gestione dei temi, del menu e della vista mobile/PC -->
+<script>
+  // Gestione apertura/chiusura menu tendina
+  const settingsBtn = document.getElementById('settingsBtn');
+  const settingsMenu = document.getElementById('settingsMenu');
+
+  if (settingsBtn && settingsMenu) {
+    settingsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      settingsMenu.classList.toggle('show');
+    });
+
+    window.addEventListener('click', () => {
+      settingsMenu.classList.remove('show');
+    });
+  }
+
+  // Funzioni di cambio colore e modalità
+  function setColor(colorClass) {
+    const htmlEl = document.documentElement;
+    htmlEl.classList.remove('color-blue', 'color-yellow', 'color-red', 'color-green', 'color-gray', 'color-purple');
+    htmlEl.classList.add(colorClass);
+    localStorage.setItem('site_color', colorClass);
+    if(settingsMenu) settingsMenu.classList.remove('show');
+  }
+
+  function setMode(modeClass) {
+    const htmlEl = document.documentElement;
+    htmlEl.classList.remove('mode-dark', 'mode-light');
+    htmlEl.classList.add(modeClass);
+    localStorage.setItem('site_mode', modeClass);
+    if(settingsMenu) settingsMenu.classList.remove('show');
+  }
+
+  // Ripristino delle preferenze salvate dall'utente
+  const savedColor = localStorage.getItem('site_color');
+  const savedMode = localStorage.getItem('site_mode');
+  if (savedColor) {
+    document.documentElement.classList.remove('color-blue');
+    document.documentElement.classList.add(savedColor);
+  }
+  if (savedMode) {
+    document.documentElement.classList.remove('mode-dark');
+    document.documentElement.classList.add(savedMode);
+  }
+
+  // Pulsante Vista PC / Mobile
+  const viewToggle = document.getElementById('viewToggle');
+  if (viewToggle) {
+    viewToggle.addEventListener('click', () => {
+      document.body.classList.toggle('mobile-view');
+      if (document.body.classList.contains('mobile-view')) {
+        viewToggle.textContent = 'Vista: Mobile';
+      } else {
+        viewToggle.textContent = 'Vista: PC';
+      }
+    });
+  }
+</script>
