@@ -1,3 +1,4 @@
+<!-- Stili Puliti per la Sidebar e i Controlli in Alto a Destra -->
 <style>
   .sidebar {
     width: 240px;
@@ -25,6 +26,7 @@
     border-radius: 8px;
     font-weight: 500;
     transition: all 0.2s ease;
+    display: block;
   }
   .sidebar a:hover {
     background: var(--aero-btn-hover);
@@ -37,20 +39,20 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  /* Sezione Controlli in basso nella sidebar */
-  .sidebar-controls {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border-color);
+  /* Controlli in alto a destra posizionati correttamente */
+  .top-controls { 
+    position: fixed; 
+    top: 15px; 
+    right: 20px; 
+    display: flex; 
+    gap: 10px; 
+    z-index: 1200; 
   }
   .control-btn {
     background: var(--aero-btn-bg);
     border: 1px solid var(--border-color); 
     color: var(--text-main); 
-    padding: 10px 12px;
+    padding: 8px 14px;
     border-radius: 8px; 
     cursor: pointer; 
     font-size: 14px; 
@@ -60,19 +62,18 @@
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 6px;
-    width: 100%;
+    white-space: nowrap;
   }
   .control-btn:hover {
     background: var(--aero-btn-hover);
   }
 
-  /* Menu a tendina impostazioni a comparsa */
+  /* Menu a tendina delle impostazioni */
   .settings-dropdown {
     position: absolute;
-    left: 250px;
-    bottom: 20px;
+    top: 45px;
+    right: 0;
     background: var(--panel-bg);
     border: 1px solid var(--border-color);
     border-radius: 10px;
@@ -83,7 +84,7 @@
     flex-direction: column;
     gap: 10px;
     width: 200px;
-    z-index: 1200;
+    z-index: 1300;
   }
   .settings-dropdown.show {
     display: flex;
@@ -117,48 +118,47 @@
   }
 </style>
 
-<!-- Struttura Sidebar con Controlli Integrati -->
+<!-- Struttura della Sidebar Classica -->
 <div class="sidebar">
-  <div>
-    <h2>TeenagersITAcards</h2>
-    <a href="index.html">Home</a>
-    <a href="annunci.html">Annunci</a>
-    <a href="carte.html">Carte</a>
-    <a href="gioca.html">Gioca vs Bot</a>
-    <a href="account.html">Account</a>
-  </div>
+  <h2>TeenagersITAcards</h2>
+  <a href="index.html">Home</a>
+  <a href="annunci.html">Annunci</a>
+  <a href="carte.html">Carte</a>
+  <a href="gioca.html">Gioca vs Bot</a>
+  <a href="account.html">Account</a>
+</div>
 
-  <!-- Bottoni inseriti ordinatamente in fondo alla sidebar -->
-  <div class="sidebar-controls">
-    <button id="viewToggle" class="control-btn">Vista: PC</button>
-    
-    <div style="position: relative;">
-      <button id="settingsBtn" class="control-btn">⚙ Impostazioni</button>
-      <div id="settingsMenu" class="settings-dropdown">
-        
-        <div class="dropdown-section-title">Colore Sfondo</div>
-        <div class="dropdown-group">
-          <button class="dropdown-item" onclick="setColor('color-blue')">🔵 Blu Aero</button>
-          <button class="dropdown-item" onclick="setColor('color-yellow')">🟡 Giallo</button>
-          <button class="dropdown-item" onclick="setColor('color-red')">🔴 Rosso</button>
-          <button class="dropdown-item" onclick="setColor('color-green')">🟢 Verde</button>
-          <button class="dropdown-item" onclick="setColor('color-gray')">⚪ Grigio</button>
-          <button class="dropdown-item" onclick="setColor('color-purple')">🟣 Viola</button>
-        </div>
-
-        <hr style="border: none; border-top: 1px solid var(--border-color); margin: 4px 0;">
-
-        <div class="dropdown-section-title">Modalità</div>
-        <div class="dropdown-group">
-          <button class="dropdown-item" onclick="setMode('mode-dark')">🌙 Scura</button>
-          <button class="dropdown-item" onclick="setMode('mode-light')">☀️ Chiara</button>
-        </div>
-
+<!-- Controlli in alto a destra -->
+<div class="top-controls">
+  <button id="viewToggle" class="control-btn">Vista: PC</button>
+  
+  <div style="position: relative;">
+    <button id="settingsBtn" class="control-btn">⚙ Impostazioni</button>
+    <div id="settingsMenu" class="settings-dropdown">
+      
+      <div class="dropdown-section-title">Colore Sfondo</div>
+      <div class="dropdown-group">
+        <button class="dropdown-item" onclick="setColor('color-blue')">🔵 Blu Aero</button>
+        <button class="dropdown-item" onclick="setColor('color-yellow')">🟡 Giallo</button>
+        <button class="dropdown-item" onclick="setColor('color-red')">🔴 Rosso</button>
+        <button class="dropdown-item" onclick="setColor('color-green')">🟢 Verde</button>
+        <button class="dropdown-item" onclick="setColor('color-gray')">⚪ Grigio</button>
+        <button class="dropdown-item" onclick="setColor('color-purple')">🟣 Viola</button>
       </div>
+
+      <hr style="border: none; border-top: 1px solid var(--border-color); margin: 4px 0;">
+
+      <div class="dropdown-section-title">Modalità</div>
+      <div class="dropdown-group">
+        <button class="dropdown-item" onclick="setMode('mode-dark')">🌙 Scura</button>
+        <button class="dropdown-item" onclick="setMode('mode-light')">☀️ Chiara</button>
+      </div>
+
     </div>
   </div>
 </div>
 
+<!-- Script di gestione -->
 <script>
   const settingsBtn = document.getElementById('settingsBtn');
   const settingsMenu = document.getElementById('settingsMenu');
@@ -190,15 +190,23 @@
     if(settingsMenu) settingsMenu.classList.remove('show');
   }
 
+  // Ripristina le preferenze salvate o usa il default (Blu + Scura)
   const savedColor = localStorage.getItem('site_color');
   const savedMode = localStorage.getItem('site_mode');
+  const htmlEl = document.documentElement;
+  
   if (savedColor) {
-    document.documentElement.classList.remove('color-blue');
-    document.documentElement.classList.add(savedColor);
+    htmlEl.classList.remove('color-blue');
+    htmlEl.classList.add(savedColor);
+  } else {
+    htmlEl.classList.add('color-blue');
   }
+
   if (savedMode) {
-    document.documentElement.classList.remove('mode-dark');
-    document.documentElement.classList.add(savedMode);
+    htmlEl.classList.remove('mode-dark');
+    htmlEl.classList.add(savedMode);
+  } else {
+    htmlEl.classList.add('mode-dark');
   }
 
   const viewToggle = document.getElementById('viewToggle');
