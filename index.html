@@ -1,52 +1,34 @@
 <!DOCTYPE html>
-<html lang="it" class="color-blue mode-dark">
+<html lang="it" class="theme-dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home - Carte di r/TeenagersITA</title>
 <style>
-  /* --- 1. CONFIGURAZIONE COLORI BASE (Tonalità) --- */
-  :root.color-blue {
-    --h-1: #1a2230; --h-2: #111620; --h-3: #0d1118;
-    --l-1: #eaf6ff; --l-2: #cfe8fa; --l-3: #dff1fc;
-  }
-  :root.color-yellow {
-    --h-1: #fef08a; --h-2: #fde047; --h-3: #eab308;
-    --l-1: #fefce8; --l-2: #fef9c3; --l-3: #fef08a;
-  }
-  :root.color-red {
-    --h-1: #3b1619; --h-2: #260d0f; --h-3: #180608;
-    --l-1: #fff1f2; --l-2: #ffe4e6; --l-3: #fecdd3;
-  }
-  :root.color-green {
-    --h-1: #14281d; --h-2: #0d1a13; --h-3: #08110b;
-    --l-1: #f0fdf4; --l-2: #dcfce7; --l-3: #bbf7d0;
-  }
-  :root.color-gray {
-    --h-1: #1f242d; --h-2: #151921; --h-3: #0d1015;
-    --l-1: #f8fafc; --l-2: #f1f5f9; --l-3: #e2e8f0;
-  }
-  :root.color-purple {
-    --h-1: #281832; --h-2: #1b0f22; --h-3: #110916;
-    --l-1: #faf5ff; --l-2: #f3e8ff; --l-3: #e9d5ff;
-  }
-
-  /* --- 2. CONFIGURAZIONE MODALITÀ SCURA / CHIARA --- */
-  :root.mode-dark {
-    --bg-grad-1: var(--h-1); --bg-grad-2: var(--h-2); --bg-grad-3: var(--h-3);
+  /* --- Stili Base e Temi Aero Classici --- */
+  :root.theme-dark {
+    --bg-grad-1: #1a2230; --bg-grad-2: #111620; --bg-grad-3: #0d1118;
     --panel-bg: rgba(22, 27, 34, 0.85);
     --text-main: #e0e6ed; --text-muted: #b8c7d9; 
     --border-color: rgba(255, 255, 255, 0.15);
     --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.05) 100%);
     --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.05) 51%, rgba(255,255,255,0.15) 100%);
   }
-  :root.mode-light {
-    --bg-grad-1: var(--l-1); --bg-grad-2: var(--l-2); --bg-grad-3: var(--l-3);
+  :root.theme-light {
+    --bg-grad-1: #eaf6ff; --bg-grad-2: #cfe8fa; --bg-grad-3: #dff1fc;
     --panel-bg: rgba(255, 255, 255, 0.85);
     --text-main: #1a1a1a; --text-muted: #4a5568; 
     --border-color: rgba(127, 184, 224, 0.4);
     --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(230,242,255,0.8) 50%, rgba(200,225,250,0.8) 51%, rgba(235,245,255,0.9) 100%);
     --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(240,248,255,0.9) 50%, rgba(210,230,255,0.9) 51%, rgba(245,250,255,1) 100%);
+  }
+  :root.theme-yellow {
+    --bg-grad-1: #fef08a; --bg-grad-2: #fde047; --bg-grad-3: #eab308;
+    --panel-bg: rgba(255, 251, 235, 0.9);
+    --text-main: #713f12; --text-muted: #854d0e; 
+    --border-color: rgba(202, 138, 4, 0.4);
+    --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(254,240,138,0.8) 50%, rgba(253,224,71,0.8) 51%, rgba(254,249,195,0.9) 100%);
+    --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(254,243,199,0.9) 50%, rgba(253,230,138,0.9) 51%, rgba(255,255,255,1) 100%);
   }
   
   * { box-sizing: border-box; }
@@ -58,83 +40,6 @@
     min-height: 100vh;
     background: linear-gradient(to bottom, var(--bg-grad-1) 0%, var(--bg-grad-2) 50%, var(--bg-grad-3) 100%);
     color: var(--text-main);
-  }
-
-  /* Controlli in alto a destra */
-  .top-controls { 
-    position: fixed; 
-    top: 15px; 
-    right: 20px; 
-    display: flex; 
-    gap: 10px; 
-    z-index: 1200; 
-  }
-  .control-btn {
-    background: var(--aero-btn-bg);
-    border: 1px solid var(--border-color); 
-    color: var(--text-main); 
-    padding: 8px 14px;
-    border-radius: 8px; 
-    cursor: pointer; 
-    font-size: 14px; 
-    font-weight: 600;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 10px rgba(0,0,0,0.3);
-    backdrop-filter: blur(6px);
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .control-btn:hover {
-    background: var(--aero-btn-hover);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 6px 12px rgba(0,0,0,0.4);
-  }
-
-  /* Menu a tendina impostazioni (Ingranaggio) */
-  .settings-dropdown {
-    position: absolute;
-    top: 45px;
-    right: 0;
-    background: var(--panel-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    width: 200px;
-  }
-  .settings-dropdown.show {
-    display: flex;
-  }
-  .dropdown-section-title {
-    font-size: 11px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: var(--text-muted);
-    margin-bottom: 2px;
-    letter-spacing: 0.5px;
-  }
-  .dropdown-group {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .dropdown-item {
-    background: transparent;
-    border: none;
-    color: var(--text-main);
-    text-align: left;
-    padding: 6px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
-  }
-  .dropdown-item:hover {
-    background: var(--aero-btn-hover);
   }
 
   .content { 
@@ -179,37 +84,7 @@
 </head>
 <body>
 
-<div class="top-controls">
-  <button id="viewToggle" class="control-btn">Vista: PC</button>
-  
-  <div style="position: relative;">
-    <button id="settingsBtn" class="control-btn">⚙ Impostazioni</button>
-    <div id="settingsMenu" class="settings-dropdown">
-      
-      <!-- Scelta Colore Base -->
-      <div class="dropdown-section-title">Colore Sfondo</div>
-      <div class="dropdown-group">
-        <button class="dropdown-item" onclick="setColor('color-blue')">🔵 Blu Aero</button>
-        <button class="dropdown-item" onclick="setColor('color-yellow')">🟡 Giallo</button>
-        <button class="dropdown-item" onclick="setColor('color-red')">🔴 Rosso</button>
-        <button class="dropdown-item" onclick="setColor('color-green')">🟢 Verde</button>
-        <button class="dropdown-item" onclick="setColor('color-gray')">⚪ Grigio</button>
-        <button class="dropdown-item" onclick="setColor('color-purple')">🟣 Viola</button>
-      </div>
-
-      <hr style="border: none; border-top: 1px solid var(--border-color); margin: 4px 0;">
-
-      <!-- Scelta Modalità Scuro / Chiaro -->
-      <div class="dropdown-section-title">Modalità</div>
-      <div class="dropdown-group">
-        <button class="dropdown-item" onclick="setMode('mode-dark')">🌙 Scura</button>
-        <button class="dropdown-item" onclick="setMode('mode-light')">☀️ Chiara</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
+<!-- Contenitore della Sidebar (che caricherà anche i bottoni globali se usi la sidebar unificata) -->
 <div id="sidebar-container"></div>
 
 <div class="content">
@@ -222,7 +97,7 @@
 </div>
 
 <script>
-  // 1. Carica la sidebar
+  // Caricamento della Sidebar e attivazione del link corrente
   fetch('sidebar.html')
     .then(response => response.text())
     .then(data => {
@@ -235,60 +110,11 @@
       });
     });
 
-  // 2. Gestione menu tendina ingranaggio
-  const settingsBtn = document.getElementById('settingsBtn');
-  const settingsMenu = document.getElementById('settingsMenu');
-
-  settingsBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    settingsMenu.classList.toggle('show');
-  });
-
-  window.addEventListener('click', () => {
-    settingsMenu.classList.remove('show');
-  });
-
-  // 3. Funzioni per cambiare colore e modalità con salvataggio
-  function setColor(colorClass) {
-    const htmlEl = document.documentElement;
-    // Rimuove solo le classi relative al colore
-    htmlEl.classList.remove('color-blue', 'color-yellow', 'color-red', 'color-green', 'color-gray', 'color-purple');
-    htmlEl.classList.add(colorClass);
-    localStorage.setItem('site_color', colorClass);
-    settingsMenu.classList.remove('show');
+  // Applicazione immediata del tema salvato in precedenza (se presente)
+  const savedTheme = localStorage.getItem('site_theme');
+  if (savedTheme) {
+    document.documentElement.className = savedTheme;
   }
-
-  function setMode(modeClass) {
-    const htmlEl = document.documentElement;
-    // Rimuove solo le classi relative alla modalità
-    htmlEl.classList.remove('mode-dark', 'mode-light');
-    htmlEl.classList.add(modeClass);
-    localStorage.setItem('site_mode', modeClass);
-    settingsMenu.classList.remove('show');
-  }
-
-  // Ripristina le preferenze salvate in precedenza
-  const savedColor = localStorage.getItem('site_color');
-  const savedMode = localStorage.getItem('site_mode');
-  if (savedColor) {
-    document.documentElement.classList.remove('color-blue'); // rimuove il default
-    document.documentElement.classList.add(savedColor);
-  }
-  if (savedMode) {
-    document.documentElement.classList.remove('mode-dark'); // rimuove il default
-    document.documentElement.classList.add(savedMode);
-  }
-
-  // 4. Tasto Vista PC / Mobile
-  const viewToggle = document.getElementById('viewToggle');
-  viewToggle.addEventListener('click', () => {
-    document.body.classList.toggle('mobile-view');
-    if (document.body.classList.contains('mobile-view')) {
-      viewToggle.textContent = 'Vista: Mobile';
-    } else {
-      viewToggle.textContent = 'Vista: PC';
-    }
-  });
 </script>
 
 </body>
