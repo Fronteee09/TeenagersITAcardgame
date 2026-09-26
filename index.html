@@ -218,7 +218,7 @@
     padding: 6px 14px; font-weight: bold; cursor: pointer; font-size: 12px;
   }
 
-  /* Stile Galleria Carte */
+  /* Stile Galleria Carte & Rarità */
   .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -227,11 +227,20 @@
   }
   .card-item {
     background: linear-gradient(to bottom, var(--box-grad-1) 0%, var(--box-grad-2) 50%, var(--box-grad-3) 100%);
-    border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 12px;
     text-align: center;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  /* Bordo Giallo non troppo luminoso per Aspro (Leggendario) */
+  .card-item.legendary {
+    border: 2px solid #d4ac0d;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 10px rgba(212, 172, 13, 0.3);
+  }
+  /* Bordo Argento per Clipp3r (Raro) */
+  .card-item.rare {
+    border: 2px solid #95a5a6;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 10px rgba(149, 165, 166, 0.3);
   }
   .card-item img {
     width: 100%;
@@ -240,11 +249,32 @@
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   }
-  .card-name {
+  .card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 10px;
-    font-size: 13px;
+    font-size: 12px;
+  }
+  .card-name {
     font-weight: bold;
     color: var(--text-main);
+  }
+  .card-rarity {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .card-item.legendary .card-rarity {
+    color: #d4ac0d;
+    background: rgba(212, 172, 13, 0.15);
+    border: 1px solid rgba(212, 172, 13, 0.3);
+  }
+  .card-item.rare .card-rarity {
+    color: #95a5a6;
+    background: rgba(149, 165, 166, 0.15);
+    border: 1px solid rgba(149, 165, 166, 0.3);
   }
 </style>
 </head>
@@ -253,7 +283,6 @@
 <div class="top-controls">
   <button id="themeToggle" class="control-btn" title="Cambia Tema Scuro/Chiaro">&#x1F441;</button>
   <div style="position: relative;">
-    <!-- SIMBOLO UNICODE DEL PENNELLO DA DISEGNO -->
     <button id="paintToggle" class="control-btn" title="Cambia Colori Sito">&#x1F58C;</button>
     <div id="colorDropdown" class="color-dropdown">
       <div class="color-option opt-blue" data-color="theme-blue">Blu</div>
@@ -345,9 +374,22 @@
     <p>In questa sezione puoi visualizzare tutte le carte collezionabili create finora per la community.</p>
     
     <div class="cards-grid">
-      <div class="card-item">
+      <!-- CARTA ASPRO (Leggendario - Bordo Giallo) -->
+      <div class="card-item legendary">
         <img src="aspro.png" alt="Carta Aspro">
-        <div class="card-name">Aspro</div>
+        <div class="card-info">
+          <span class="card-name">Aspro</span>
+          <span class="card-rarity">Leggendario</span>
+        </div>
+      </div>
+
+      <!-- CARTA CLIPP3R (Raro - Bordo Argento) -->
+      <div class="card-item rare">
+        <img src="clipp3r.png" alt="Carta Clipp3r">
+        <div class="card-info">
+          <span class="card-name">Clipp3r</span>
+          <span class="card-rarity">Raro</span>
+        </div>
       </div>
     </div>
   </div>
