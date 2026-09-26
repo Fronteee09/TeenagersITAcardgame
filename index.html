@@ -155,6 +155,7 @@
     border: 1px solid rgba(227, 179, 65, 0.2);
   }
 
+  /* Sezione Annunci */
   .annunci-container { display: flex; gap: 20px; align-items: flex-start; }
   .post-box, .comments-box {
     background: linear-gradient(to bottom, var(--box-grad-1) 0%, var(--box-grad-2) 50%, var(--box-grad-3) 100%);
@@ -201,14 +202,7 @@
   }
 
   .comments-title { font-weight: bold; font-size: 14px; margin-bottom: 12px; color: var(--text-main); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
-  
-  .comments-list {
-    max-height: 160px;
-    overflow-y: auto;
-    padding-right: 4px;
-    margin-bottom: 10px;
-  }
-
+  .comments-list { max-height: 160px; overflow-y: auto; padding-right: 4px; margin-bottom: 10px; }
   .comment-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
   .avatar { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; }
   .comment-text .user { font-weight: bold; color: var(--text-main); }
@@ -223,11 +217,39 @@
     border: 1px solid rgba(255, 255, 255, 0.3); color: white; border-radius: 6px;
     padding: 6px 14px; font-weight: bold; cursor: pointer; font-size: 12px;
   }
+
+  /* Stile Galleria Carte */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+  }
+  .card-item {
+    background: linear-gradient(to bottom, var(--box-grad-1) 0%, var(--box-grad-2) 50%, var(--box-grad-3) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  .card-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+  .card-name {
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--text-main);
+  }
 </style>
 </head>
 <body>
 
-<!-- CONTROLLI IN ALTO A DESTRA (UNICODE: OCCHIO E PENNELLO) -->
 <div class="top-controls">
   <button id="themeToggle" class="control-btn" title="Cambia Tema Scuro/Chiaro">&#x1F441;</button>
   <div style="position: relative;">
@@ -319,7 +341,14 @@
   <!-- SCHEDA CARTE -->
   <div id="carte" class="panel">
     <h1>Galleria Carte</h1>
-    <p>In questa sezione potrai visualizzare tutte le carte collezionabili create finora per la community.</p>
+    <p>In questa sezione puoi visualizzare tutte le carte collezionabili create finora per la community.</p>
+    
+    <div class="cards-grid">
+      <div class="card-item">
+        <img src="aspro.png" alt="Carta Aspro">
+        <div class="card-name">Aspro</div>
+      </div>
+    </div>
   </div>
 
   <!-- SCHEDA GIOCA VS BOT -->
@@ -351,10 +380,10 @@
   themeToggle.addEventListener('click', () => {
     if (htmlElement.classList.contains('dark')) {
       htmlElement.classList.replace('dark', 'light');
-      themeToggle.innerHTML = '&#x25D3;'; // Simbolo unicode per tema chiaro/luna
+      themeToggle.innerHTML = '&#x25D3;';
     } else {
       htmlElement.classList.replace('light', 'dark');
-      themeToggle.innerHTML = '&#x1F441;'; // Simbolo unicode occhio
+      themeToggle.innerHTML = '&#x1F441;';
     }
   });
 
@@ -418,7 +447,7 @@
     userDiv.textContent = 'Tu (Ospite)';
 
     const msgDiv = document.createElement('div');
-    msgDiv.className = 'msg';
+    msgDiv.className5 = 'msg';
     msgDiv.textContent = testo;
 
     commentText.appendChild(userDiv);
