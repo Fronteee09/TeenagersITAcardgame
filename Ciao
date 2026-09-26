@@ -10,3 +10,77 @@
   body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
+    background: #2b2a33;
+    color: #ffffff;
+    display: flex;
+    min-height: 100vh;
+  }
+  .sidebar {
+    width: 200px;
+    background: #221f28;
+    padding: 20px 0;
+    flex-shrink: 0;
+  }
+  .sidebar h2 {
+    font-size: 16px;
+    padding: 0 20px;
+    margin: 0 0 20px;
+    color: #a78bfa;
+  }
+  .sidebar a {
+    display: block;
+    padding: 12px 20px;
+    color: #dcdcdc;
+    text-decoration: none;
+    font-size: 14px;
+    border-left: 3px solid transparent;
+  }
+  .sidebar a:hover, .sidebar a.active {
+    background: #33303c;
+    border-left: 3px solid #a78bfa;
+    color: #ffffff;
+  }
+  .content {
+    flex: 1;
+    padding: 40px 50px;
+  }
+  .content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .content p {
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 650px;
+  }
+  .content a {
+    color: #8ab4f8;
+  }
+  .warning {
+    margin-top: 30px;
+    color: #e8a13a;
+    font-weight: bold;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>TeenagersITA Cards</h2>
+  <a href="#" class="active">Home</a>
+  <a href="#">Annunci</a>
+  <a href="#">Carte</a>
+  <a href="#">Gioca vs Bot</a>
+</div>
+
+<div class="content">
+  <h1>Carte di r/TeenagersITA:</h1>
+  <p>Benvenuti sul sito dei giochi di carte legati a TeenagersITA.</p>
+  <p>Questo progetto realizzato interamente da Fronte ★ (<a href="#">u/Unknow_guy21</a>) si basa sul creare un gioco interattivo disponibile a tutti.</p>
+  <p>Potete trovare ulteriori annunci sulla sezione "annunci" del sito.</p>
+  <div class="warning">⚠ Le carte presenti su questo sito sono autorizzate dagli utenti ⚠</div>
+</div>
+
+</body>
+</html>
