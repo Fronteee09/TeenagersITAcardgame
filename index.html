@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Carte di r/TeenagersITA</title>
 <style>
-  /* Variabili di colore per i temi (Blu di default) */
   :root {
     --bg-grad-1: #1a2230; --bg-grad-2: #111620; --bg-grad-3: #0d1118;
     --sidebar-grad-1: rgba(35, 45, 60, 0.9); --sidebar-grad-2: rgba(20, 26, 36, 0.95);
@@ -14,7 +13,6 @@
     --primary-color: #3b82d6; --primary-hover: #1c529c; --accent-glow: rgba(59, 130, 214, 0.6);
   }
 
-  /* Tema Chiaro (Attivato dall'occhio) */
   html.light {
     --bg-grad-1: #eaf6ff; --bg-grad-2: #cfe8fa; --bg-grad-3: #dff1fc;
     --sidebar-grad-1: rgba(245, 251, 271, 0.9); --sidebar-grad-2: rgba(217, 237, 251, 0.95);
@@ -24,17 +22,11 @@
     --primary-color: #6fb7e8; --primary-hover: #3a8fc7; --accent-glow: rgba(58, 143, 199, 0.4);
   }
 
-  /* Variazioni di Colore - BLU (Default) */
   html.theme-blue { --col-main: #3b82d6; --col-dark: #1c529c; --col-glow: rgba(59, 130, 214, 0.6); }
-  /* VERDE */
   html.theme-green { --col-main: #2ecc71; --col-dark: #27ae60; --col-glow: rgba(46, 204, 113, 0.6); }
-  /* ROSSO */
   html.theme-red { --col-main: #e74c3c; --col-dark: #c0392b; --col-glow: rgba(231, 76, 60, 0.6); }
-  /* GIALLO */
   html.theme-yellow { --col-main: #f1c40f; --col-dark: #d35400; --col-glow: rgba(241, 196, 15, 0.6); }
-  /* GRIGIO */
   html.theme-gray { --col-main: #7f8c8d; --col-dark: #34495e; --col-glow: rgba(127, 140, 141, 0.6); }
-  /* VIOLA */
   html.theme-purple { --col-main: #9b59b6; --col-dark: #8e44ad; --col-glow: rgba(155, 89, 182, 0.6); }
 
   * { box-sizing: border-box; }
@@ -47,7 +39,6 @@
     color: var(--text-main);
   }
 
-  /* Header e Pulsanti in alto a destra */
   .top-controls {
     position: fixed;
     top: 15px;
@@ -69,7 +60,6 @@
   }
   .control-btn:hover { filter: brightness(1.1); transform: scale(1.05); }
 
-  /* Menu a tendina per i colori di Paint */
   .color-dropdown {
     position: absolute;
     top: 45px;
@@ -165,7 +155,6 @@
     border: 1px solid rgba(227, 179, 65, 0.2);
   }
 
-  /* Sezione Annunci Layout */
   .annunci-container { display: flex; gap: 20px; align-items: flex-start; }
   .post-box, .comments-box {
     background: linear-gradient(to bottom, var(--box-grad-1) 0%, var(--box-grad-2) 50%, var(--box-grad-3) 100%);
@@ -188,20 +177,45 @@
   }
   .post-content { font-size: 13px; line-height: 1.6; color: var(--text-main); margin-bottom: 15px; }
   .post-actions { display: flex; justify-content: flex-end; gap: 8px; }
-  .aero-btn {
+  
+  /* Bottoni Like e Dislike personalizzati */
+  .vote-btn {
     background: linear-gradient(to bottom, rgba(80, 100, 130, 0.4), rgba(30, 45, 65, 0.6));
-    border: 1px solid var(--border-color); border-radius: 6px; padding: 6px 12px;
-    color: var(--text-main); cursor: pointer; font-size: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 6px 14px;
+    color: var(--text-main);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background 0.2s;
   }
+  .vote-btn.liked {
+    background: linear-gradient(to bottom, #2ecc71, #27ae60) !important;
+    color: white !important;
+    border-color: rgba(255,255,255,0.4);
+  }
+  .vote-btn.disliked {
+    background: linear-gradient(to bottom, #e74c3c, #c0392b) !important;
+    color: white !important;
+    border-color: rgba(255,255,255,0.4);
+  }
+
   .comments-title { font-weight: bold; font-size: 14px; margin-bottom: 12px; color: var(--text-main); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+  
+  .comments-list {
+    max-height: 160px;
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-bottom: 10px;
+  }
+
   .comment-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 12px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
   .avatar { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; }
-  .avatar.orange { background: radial-gradient(circle at 30% 30%, #ffaa44, #cc6600); }
-  .avatar.green { background: radial-gradient(circle at 30% 30%, #66cc66, #228822); }
-  .avatar.blue { background: radial-gradient(circle at 30% 30%, #44aaff, #1155cc); }
+  .avatar.custom { background: radial-gradient(circle at 30% 30%, #9b59b6, #512e5f); }
   .comment-text .user { font-weight: bold; color: var(--text-main); }
   .comment-text .msg { color: var(--text-muted); margin-top: 2px; }
-  .comment-input-area { display: flex; gap: 8px; margin-top: 15px; }
+  .comment-input-area { display: flex; gap: 8px; margin-top: 10px; }
   .comment-input {
     flex: 1; background: rgba(0, 0, 0, 0.1); border: 1px solid var(--border-color);
     border-radius: 6px; padding: 6px 10px; color: var(--text-main); font-size: 12px; outline: none;
@@ -215,12 +229,8 @@
 </head>
 <body>
 
-<!-- CONTROLLI IN ALTO A DESTRA (OCCHIO E PAINT) -->
 <div class="top-controls">
-  <!-- Tasto Occhio (Tema Scuro/Chiaro) -->
   <button id="themeToggle" class="control-btn" title="Cambia Tema Scuro/Chiaro">👁️</button>
-  
-  <!-- Tasto Paint (Palette Colori) -->
   <div style="position: relative;">
     <button id="paintToggle" class="control-btn" title="Cambia Colori Sito">🎨</button>
     <div id="colorDropdown" class="color-dropdown">
@@ -267,37 +277,41 @@
           Benvenuti! Qui visualizzerete notizie, tutte le carte esistenti al momento e i match con il "bot". Il progetto è stato sviluppato interamente da me e supportato dai mod di r/TeenagersITA. Ricordiamo che gli utenti mostrati nelle carte sono coloro che ci hanno dato il consenso di farli apparire. Buon divertimento a tutti!
         </div>
         <div class="post-actions">
-          <button class="aero-btn">👍</button>
-          <button class="aero-btn">👎</button>
+          <button id="likeBtn" class="vote-btn">Mi piace</button>
+          <button id="dislikeBtn" class="vote-btn">Non mi piace</button>
         </div>
       </div>
 
       <div class="comments-box">
         <div class="comments-title">Commenti</div>
-        <div class="comment-item">
-          <div class="avatar orange"></div>
-          <div class="comment-text">
-            <div class="user">Clipp3r</div>
-            <div class="msg">ZIOPERA che progetto ahhhh![cite: 1]</div>
+        
+        <div id="commentsList" class="comments-list">
+          <div class="comment-item">
+            <div class="avatar" style="background: radial-gradient(circle at 30% 30%, #ffaa44, #cc6600);"></div>
+            <div class="comment-text">
+              <div class="user">Clipp3r</div>
+              <div class="msg">ZIOPERA che progetto ahhhh![cite: 1]</div>
+            </div>
+          </div>
+          <div class="comment-item">
+            <div class="avatar" style="background: radial-gradient(circle at 30% 30%, #66cc66, #228822);"></div>
+            <div class="comment-text">
+              <div class="user">Bho_76</div>
+              <div class="msg">bho</div>
+            </div>
+          </div>
+          <div class="comment-item">
+            <div class="avatar" style="background: radial-gradient(circle at 30% 30%, #44aaff, #1155cc);"></div>
+            <div class="comment-text">
+              <div class="user">Aliexpress final boss</div>
+              <div class="msg">WOW! lo vendo!</div>
+            </div>
           </div>
         </div>
-        <div class="comment-item">
-          <div class="avatar green"></div>
-          <div class="comment-text">
-            <div class="user">Bho_76</div>
-            <div class="msg">bho</div>
-          </div>
-        </div>
-        <div class="comment-item">
-          <div class="avatar blue"></div>
-          <div class="comment-text">
-            <div class="user">Aliexpress final boss</div>
-            <div class="msg">WOW! lo vendo!</div>
-          </div>
-        </div>
+
         <div class="comment-input-area">
-          <input type="text" class="comment-input" placeholder="Scrivi un commento...">
-          <button class="send-btn">Invia</button>
+          <input type="text" id="commentInput" class="comment-input" placeholder="Scrivi un commento...">
+          <button id="sendCommentBtn" class="send-btn">Invia</button>
         </div>
       </div>
     </div>
@@ -324,7 +338,7 @@
   links.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      links.forEach(l => l.classList.0 && l.classList.remove('active') || l.classList.remove('active'));
+      links.forEach(l => l.classList.remove('active'));
       panels.forEach(p => p.classList.remove('active'));
       link.classList.add('active');
       document.getElementById(link.getAttribute('data-target')).classList.add('active');
@@ -338,7 +352,7 @@
   themeToggle.addEventListener('click', () => {
     if (htmlElement.classList.contains('dark')) {
       htmlElement.classList.replace('dark', 'light');
-      themeToggle.textContent = '🌙'; // Cambia icona a luna per tornare scuro
+      themeToggle.textContent = '🌙';
     } else {
       htmlElement.classList.replace('light', 'dark');
       themeToggle.textContent = '👁️';
@@ -354,21 +368,79 @@
     colorDropdown.classList.toggle('show');
   });
 
-  // Selezione Colore
   document.querySelectorAll('.color-option').forEach(option => {
     option.addEventListener('click', () => {
       const selectedTheme = option.getAttribute('data-color');
-      // Rimuovi classi dei temi precedenti
       htmlElement.className = htmlElement.className.replace(/theme-\w+/g, '').trim();
-      // Aggiungi il nuovo tema colore preservando dark/light
       htmlElement.classList.add(selectedTheme);
       colorDropdown.classList.remove('show');
     });
   });
 
-  // Chiudi il menu paint se clicchi fuori
   window.addEventListener('click', () => {
     colorDropdown.classList.remove('show');
+  });
+
+  // Logica Like / Dislike (Verde / Rosso)
+  const likeBtn = document.getElementById('likeBtn');
+  const dislikeBtn = document.getElementById('dislikeBtn');
+
+  likeBtn.addEventListener('click', () => {
+    likeBtn.classList.toggle('liked');
+    dislikeBtn.classList.remove('disliked'); // Rimuovi dislike se attivo
+  });
+
+  dislikeBtn.addEventListener('click', () => {
+    dislikeBtn.classList.toggle('disliked');
+    likeBtn.classList.remove('liked'); // Rimuovi like se attivo
+  });
+
+  // Logica per aggiungere nuovi commenti
+  const commentInput = document.getElementById('commentInput');
+  const sendCommentBtn = document.getElementById('sendCommentBtn');
+  const commentsList = document.getElementById('commentsList');
+
+  function aggiungiCommento() {
+    const testo = commentInput.value.trim();
+    if (testo === "") return; // Non inviare se vuoto
+
+    // Crea elementi del commento
+    const commentItem = document.createElement('div');
+    commentItem.className = 'comment-item';
+
+    const avatar = document.createElement('div');
+    avatar.className = 'avatar custom';
+
+    const commentText = document.createElement('div');
+    commentText.className = 'comment-text';
+
+    const userDiv = document.createElement('div');
+    userDiv.className = 'user';
+    userDiv.textContent = 'Tu (Ospite)';
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'msg';
+    msgDiv.textContent = testo;
+
+    // Assembla la struttura
+    commentText.appendChild(userDiv);
+    commentText.appendChild(msgDiv);
+    commentItem.appendChild(avatar);
+    commentItem.appendChild(commentText);
+
+    // Aggiungi alla lista e scrolla in basso
+    commentsList.appendChild(commentItem);
+    commentsList.scrollTop = commentsList.scrollHeight;
+
+    // Pulisci l'input
+    commentInput.value = '';
+  }
+
+  sendCommentBtn.addEventListener('click', aggiungiCommento);
+  commentInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      aggiungiCommento();
+    }
   });
 </script>
 
