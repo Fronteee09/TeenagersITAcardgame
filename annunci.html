@@ -70,7 +70,7 @@
     min-height: 100vh;
     flex-shrink: 0;
   }
-  .sidebar h2 { font-size: 16px; margin: 0 0 15px 10px; font-weight: 700; }
+  .sidebar h2 { font-size: 16px; margin: 0 0 15px 10px; font-weight: 700; color: var(--text-main); }
   .sidebar a {
     color: var(--text-muted); text-decoration: none; padding: 10px 12px;
     border-radius: 8px; font-weight: 500; display: block; transition: all 0.2s ease;
@@ -165,8 +165,15 @@
 </head>
 <body>
 
-<!-- Sidebar dinamica -->
-<div class="sidebar" id="sidebar-container"></div>
+<!-- SIDEBAR INTEGRATA IN HTML -->
+<div class="sidebar">
+  <h2>TeenagersITAcards</h2>
+  <a href="index.html" id="link-index">Home</a>
+  <a href="annunci.html" id="link-annunci" class="active">Annunci</a>
+  <a href="carte.html" id="link-carte">Carte</a>
+  <a href="gioca.html" id="link-gioca">Gioca vs Bot</a>
+  <a href="account.html" id="link-account">Account <span class="badge-review">(In revisione)</span></a>
+</div>
 
 <div class="top-controls">
   <button id="viewToggle" class="control-btn">Vista: PC</button>
@@ -298,9 +305,6 @@
   }
   document.getElementById('newComment').addEventListener('keypress', e => { if (e.key === 'Enter') addComment(); });
 </script>
-
-<!-- Script centralizzato della sidebar -->
-<script src="sidebar.js"></script>
 
 </body>
 </html>
