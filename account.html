@@ -125,13 +125,20 @@
 </head>
 <body>
 
-<!-- Sidebar dinamica esterna -->
-<div class="sidebar" id="sidebar-container"></div>
+<!-- SIDEBAR INTEGRATA DIRETTAMENTE IN HTML -->
+<div class="sidebar">
+  <h2>TeenagersITAcards</h2>
+  <a href="index.html" id="link-index">Home</a>
+  <a href="annunci.html" id="link-annunci">Annunci</a>
+  <a href="carte.html" id="link-carte">Carte</a>
+  <a href="gioca.html" id="link-gioca">Gioca vs Bot</a>
+  <a href="account.html" id="link-account" class="active">Account <span class="badge-review">(In revisione)</span></a>
+</div>
 
 <div class="content">
   <div class="panel">
 
-    <!-- FORM LOGIN/REGISTRAZIONE (visibile se non loggato) -->
+    <!-- FORM LOGIN/REGISTRAZIONE -->
     <div id="auth-box">
       <h1 id="auth-title">Accedi</h1>
       <input type="email" id="email" placeholder="Email">
@@ -141,7 +148,7 @@
       <div class="msg" id="auth-msg"></div>
     </div>
 
-    <!-- PROFILO (visibile se loggato) -->
+    <!-- PROFILO -->
     <div id="profile-box" style="display:none;">
       <div class="profile-view">
         <span class="big-avatar" id="current-avatar">😀</span>
@@ -278,9 +285,6 @@
 
   checkSession();
 </script>
-
-<!-- Script centralizzato della sidebar -->
-<script src="sidebar.js"></script>
 
 </body>
 </html>
