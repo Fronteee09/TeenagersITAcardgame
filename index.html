@@ -101,7 +101,7 @@
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
 
-  /* --- 4. CONTROLLI FISSI IN ALTO A DESTRA (Uguali per tutte le pagine) --- */
+  /* --- 4. CONTROLLI FISSI IN ALTO A DESTRA --- */
   .top-controls { 
     position: fixed; 
     top: 15px; 
@@ -131,7 +131,6 @@
     background: var(--aero-btn-hover);
   }
 
-  /* Menu a tendina impostazioni */
   .settings-dropdown {
     position: absolute;
     top: 45px;
@@ -182,7 +181,7 @@
   /* --- 5. CONTENUTO PRINCIPALE --- */
   .content { 
     flex: 1; 
-    padding: 80px 40px 40px 40px; /* Spazio sopra per non coprire i bottoni fissi */
+    padding: 80px 40px 40px 40px; 
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -219,15 +218,8 @@
 </head>
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar">
-  <h2>TeenagersITAcards</h2>
-  <a href="index.html" class="active">Home</a>
-  <a href="annunci.html">Annunci</a>
-  <a href="carte.html">Carte</a>
-  <a href="gioca.html">Gioca vs Bot</a>
-  <a href="account.html">Account</a>
-</div>
+<!-- Sidebar dinamica (gestita da sidebar.js) -->
+<div class="sidebar" id="sidebar-container"></div>
 
 <!-- Controlli fissi in alto a destra -->
 <div class="top-controls">
@@ -301,7 +293,6 @@
     if(settingsMenu) settingsMenu.classList.remove('show');
   }
 
-  // Sincronizza lo stato salvato in localStorage in ogni pagina
   const savedColor = localStorage.getItem('site_color');
   const savedMode = localStorage.getItem('site_mode');
   const htmlEl = document.documentElement;
@@ -327,6 +318,9 @@
     });
   }
 </script>
+
+<!-- Collegamento allo script centralizzato della sidebar -->
+<script src="sidebar.js"></script>
 
 </body>
 </html>
