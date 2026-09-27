@@ -165,14 +165,8 @@
 </head>
 <body>
 
-<div class="sidebar">
-  <h2>TeenagersITAcards</h2>
-  <a href="index.html">Home</a>
-  <a href="annunci.html" class="active">Annunci</a>
-  <a href="carte.html">Carte</a>
-  <a href="gioca.html">Gioca vs Bot</a>
-  <a href="account.html">Account <span class="badge-review">in fase di revisione</span></a>
-</div>
+<!-- Sidebar dinamica -->
+<div class="sidebar" id="sidebar-container"></div>
 
 <div class="top-controls">
   <button id="viewToggle" class="control-btn">Vista: PC</button>
@@ -304,6 +298,9 @@
   }
   document.getElementById('newComment').addEventListener('keypress', e => { if (e.key === 'Enter') addComment(); });
 </script>
+
+<!-- Script centralizzato della sidebar -->
+<script src="sidebar.js"></script>
 
 </body>
 </html>
