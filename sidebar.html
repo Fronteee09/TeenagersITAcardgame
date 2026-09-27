@@ -1,8 +1,294 @@
+<!DOCTYPE html>
+<html lang="it" class="color-blue mode-dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account - Carte di r/TeenagersITA</title>
+<style>
+  :root.color-blue {
+    --h-1: #1a2230; --h-2: #111620; --h-3: #0d1118;
+    --l-1: #eaf6ff; --l-2: #cfe8fa; --l-3: #dff1fc;
+  }
+  :root.color-yellow {
+    --h-1: #fef08a; --h-2: #fde047; --h-3: #eab308;
+    --l-1: #fefce8; --l-2: #fef9c3; --l-3: #fef08a;
+  }
+  :root.color-red {
+    --h-1: #3b1619; --h-2: #260d0f; --h-3: #180608;
+    --l-1: #fff1f2; --l-2: #ffe4e6; --l-3: #fecdd3;
+  }
+  :root.color-green {
+    --h-1: #14281d; --h-2: #0d1a13; --h-3: #08110b;
+    --l-1: #f0fdf4; --l-2: #dcfce7; --l-3: #bbf7d0;
+  }
+  :root.color-gray {
+    --h-1: #1f242d; --h-2: #151921; --h-3: #0d1015;
+    --l-1: #f8fafc; --l-2: #f1f5f9; --l-3: #e2e8f0;
+  }
+  :root.color-purple {
+    --h-1: #281832; --h-2: #1b0f22; --h-3: #110916;
+    --l-1: #faf5ff; --l-2: #f3e8ff; --l-3: #e9d5ff;
+  }
+  :root.mode-dark {
+    --bg-grad-1: var(--h-1); --bg-grad-2: var(--h-2); --bg-grad-3: var(--h-3);
+    --panel-bg: rgba(22, 27, 34, 0.85);
+    --text-main: #e0e6ed; --text-muted: #b8c7d9;
+    --border-color: rgba(255, 255, 255, 0.15);
+    --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.05) 100%);
+    --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.05) 51%, rgba(255,255,255,0.15) 100%);
+  }
+  :root.mode-light {
+    --bg-grad-1: var(--l-1); --bg-grad-2: var(--l-2); --bg-grad-3: var(--l-3);
+    --panel-bg: rgba(255, 255, 255, 0.85);
+    --text-main: #1a1a1a; --text-muted: #4a5568;
+    --border-color: rgba(127, 184, 224, 0.4);
+    --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(230,242,255,0.8) 50%, rgba(200,225,250,0.8) 51%, rgba(235,245,255,0.9) 100%);
+    --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(240,248,255,0.9) 50%, rgba(210,230,255,0.9) 51%, rgba(245,250,255,1) 100%);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--bg-grad-1) 0%, var(--bg-grad-2) 50%, var(--bg-grad-3) 100%);
+    color: var(--text-main);
+  }
+
+  /* STILE SIDEBAR */
+  .sidebar {
+    width: 240px;
+    background: var(--panel-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    min-height: 100vh;
+    flex-shrink: 0;
+  }
+  .sidebar h2 { font-size: 16px; margin: 0 0 15px 10px; font-weight: 700; color: var(--text-main); }
+  .sidebar a {
+    color: var(--text-muted); text-decoration: none; padding: 10px 12px;
+    border-radius: 8px; font-weight: 500; display: block; transition: all 0.2s ease;
+  }
+  .sidebar a:hover { background: var(--aero-btn-hover); color: var(--text-main); }
+  .sidebar a.active {
+    background: var(--aero-btn-bg); color: var(--text-main);
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  .badge-review {
+    color: #ff3333;
+    font-size: 12px;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255,51,51,0.6);
+    margin-left: 6px;
+  }
+
+  /* CONTENUTO */
+  .content { flex: 1; padding: 60px 40px; display: flex; justify-content: center; align-items: flex-start; }
+  .panel {
+    max-width: 420px; width: 100%;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 30px;
+    backdrop-filter: blur(10px);
+  }
+  .panel h1 { font-size: 22px; margin-top: 0; }
+  .panel input {
+    width: 100%; padding: 10px 12px; margin-bottom: 12px;
+    border-radius: 8px; border: 1px solid var(--border-color);
+    background: rgba(255,255,255,0.05); color: var(--text-main); font-size: 14px;
+  }
+  .panel button {
+    width: 100%; padding: 10px; border-radius: 8px; border: none;
+    background: #3a8fc7; color: #fff; font-weight: bold; cursor: pointer; margin-bottom: 8px;
+  }
+  .panel button.secondary { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+  .switch-link { text-align: center; font-size: 13px; color: var(--text-muted); cursor: pointer; margin-top: 8px; }
+  .switch-link:hover { text-decoration: underline; }
+  .msg { font-size: 13px; margin-top: 10px; text-align: center; }
+  .msg.error { color: #e86f6f; }
+  .msg.ok { color: #6fc76f; }
+
+  .avatar-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .avatar-option {
+    font-size: 22px; padding: 8px; border-radius: 8px; cursor: pointer;
+    border: 2px solid transparent; background: rgba(255,255,255,0.05);
+  }
+  .avatar-option.selected { border-color: #3a8fc7; background: rgba(58,143,199,0.2); }
+  .profile-view { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .profile-view .big-avatar { font-size: 40px; }
+  .profile-view .p-name { font-size: 18px; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<!-- LA TUA SIDEBAR CON GLI ID ESATTI -->
 <div class="sidebar">
   <h2>TeenagersITAcards</h2>
   <a href="index.html" id="link-index">Home</a>
   <a href="annunci.html" id="link-annunci">Annunci</a>
   <a href="carte.html" id="link-carte">Carte</a>
   <a href="gioca.html" id="link-gioca">Gioca vs Bot</a>
-  <a href="account.html" id="link-account">Account <span class="badge-review">(In revisione)</span></a>
+  <a href="account.html" id="link-account" class="active">Account <span class="badge-review">(In revisione)</span></a>
 </div>
+
+<div class="content">
+  <div class="panel">
+
+    <!-- FORM LOGIN/REGISTRAZIONE -->
+    <div id="auth-box">
+      <h1 id="auth-title">Accedi</h1>
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="handleAuth()" id="auth-btn">Accedi</button>
+      <div class="switch-link" onclick="toggleMode()" id="switch-text">Non hai un account? Registrati</div>
+      <div class="msg" id="auth-msg"></div>
+    </div>
+
+    <!-- PROFILO -->
+    <div id="profile-box" style="display:none;">
+      <div class="profile-view">
+        <span class="big-avatar" id="current-avatar">😀</span>
+        <span class="p-name" id="current-username">...</span>
+      </div>
+
+      <h1>Modifica profilo</h1>
+      <input type="text" id="username-input" placeholder="Nome utente">
+
+      <div class="avatar-grid" id="avatar-grid"></div>
+
+      <button onclick="saveProfile()">Salva</button>
+      <button class="secondary" onclick="logout()">Esci</button>
+      <div class="msg" id="profile-msg"></div>
+    </div>
+
+  </div>
+</div>
+
+<script type="module">
+  import { supabase } from './supabase.js';
+
+  const EMOJI_LIST = ['😀','😎','🤖','🐱','🐶','🦊','🐼','🐸','👾','🔥','⚡','🌟','🎮','🃏','💀'];
+  let isLoginMode = true;
+  let selectedAvatar = '😀';
+
+  window.toggleMode = function() {
+    isLoginMode = !isLoginMode;
+    document.getElementById('auth-title').textContent = isLoginMode ? 'Accedi' : 'Registrati';
+    document.getElementById('auth-btn').textContent = isLoginMode ? 'Accedi' : 'Registrati';
+    document.getElementById('switch-text').textContent = isLoginMode ? 'Non hai un account? Registrati' : 'Hai già un account? Accedi';
+    document.getElementById('auth-msg').textContent = '';
+  }
+
+  window.handleAuth = async function() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const msg = document.getElementById('auth-msg');
+    msg.className = 'msg';
+    msg.textContent = '';
+
+    if (!email || !password) {
+      msg.textContent = 'Inserisci email e password';
+      msg.classList.add('error');
+      return;
+    }
+
+    if (isLoginMode) {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) { msg.textContent = error.message; msg.classList.add('error'); }
+      else { await checkSession(); }
+    } else {
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) { msg.textContent = error.message; msg.classList.add('error'); }
+      else {
+        msg.textContent = 'Registrazione effettuata! Controlla la tua email per confermare.';
+        msg.classList.add('ok');
+      }
+    }
+  }
+
+  window.logout = async function() {
+    await supabase.auth.signOut();
+    location.reload();
+  }
+
+  window.saveProfile = async function() {
+    const username = document.getElementById('username-input').value.trim();
+    const msg = document.getElementById('profile-msg');
+    msg.className = 'msg';
+
+    if (!username) {
+      msg.textContent = 'Inserisci un nome utente';
+      msg.classList.add('error');
+      return;
+    }
+
+    const { data: { user } } = await supabase.auth.getUser();
+
+    const { error } = await supabase
+      .from('profiles')
+      .upsert({ id: user.id, username: username, avatar: selectedAvatar });
+
+    if (error) {
+      msg.textContent = 'Errore: ' + error.message;
+      msg.classList.add('error');
+    } else {
+      msg.textContent = 'Profilo salvato!';
+      msg.classList.add('ok');
+      document.getElementById('current-username').textContent = username;
+      document.getElementById('current-avatar').textContent = selectedAvatar;
+    }
+  }
+
+  function renderAvatargrid() {
+    const grid = document.getElementById('avatar-grid');
+    grid.innerHTML = '';
+    EMOJI_LIST.forEach(emoji => {
+      const div = document.createElement('div');
+      div.className = 'avatar-option' + (emoji === selectedAvatar ? ' selected' : '');
+      div.textContent = emoji;
+      div.onclick = () => {
+        selectedAvatar = emoji;
+        renderAvatarGrid();
+      };
+      grid.appendChild(div);
+    });
+  }
+
+  async function checkSession() {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      document.getElementById('auth-box').style.display = 'none';
+      document.getElementById('profile-box').style.display = 'block';
+
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      if (profile) {
+        document.getElementById('username-input').value = profile.username || '';
+        selectedAvatar = profile.avatar || '😀';
+        document.getElementById('current-username').textContent = profile.username || 'Senza nome';
+        document.getElementById('current-avatar').textContent = selectedAvatar;
+      }
+      renderAvatarGrid();
+    } else {
+      document.getElementById('auth-box').style.display = 'block';
+      document.getElementById('profile-box').style.display = 'none';
+    }
+  }
+
+  checkSession();
+</script>
+
+</body>
+</html>
