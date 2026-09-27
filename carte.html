@@ -106,11 +106,11 @@
 
   .cards-grid { display: flex; flex-wrap: wrap; gap: 30px; }
   .card {
-    width: 260px;
+    width: 220px;
     background: var(--panel-bg);
     border: 1px solid var(--border-color);
     border-radius: 14px;
-    padding: 16px;
+    padding: 10px;
     text-align: center;
     backdrop-filter: blur(10px);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 10px 25px rgba(0,0,0,0.35);
@@ -123,12 +123,20 @@
     border-color: #22c55e;
     box-shadow: 0 0 0 2px #22c55e, inset 0 1px 0 rgba(255,255,255,0.1), 0 10px 25px rgba(0,0,0,0.35);
   }
-  .card-frame { background: #e9edf2; border-radius: 8px; overflow: hidden; color: #1a1a1a; }
-  .card-frame-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; font-size: 13px; font-weight: bold; background: #dfe4ea; }
-  .card-frame-img { width: 100%; height: 180px; object-fit: cover; display: block; background: #cfd6de; }
-  .card-frame-stats { padding: 10px 12px 14px; text-align: left; font-size: 14px; line-height: 1.5; }
-  .card-name { margin: 14px 0 6px; font-size: 20px; font-weight: 700; color: var(--text-main); }
-  .card-rarity { display: inline-block; padding: 4px 14px; border-radius: 8px; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; }
+  .card-frame-img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+  }
+  .card-rarity {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
   .card-rarity.leggendario { background: #eab30833; color: #eab308; }
   .card-rarity.raro { background: rgba(255,255,255,0.1); color: var(--text-muted); }
   .card-rarity.comune { background: #22c55e33; color: #4ade80; }
@@ -174,47 +182,17 @@
   <div class="cards-grid">
 
     <div class="card rarity-leggendario">
-      <div class="card-frame">
-        <div class="card-frame-header">
-          <span>u/AsproMavro</span>
-          <span>Leggendario</span>
-        </div>
-        <img src="aspro.png" alt="Aspro" class="card-frame-img">
-        <div class="card-frame-stats">
-          90 HP<br>50 Attacco
-        </div>
-      </div>
-      <div class="card-name">Aspro</div>
+      <img src="aspro.png" alt="Aspro" class="card-frame-img">
       <span class="card-rarity leggendario">LEGGENDARIO</span>
     </div>
 
     <div class="card">
-      <div class="card-frame">
-        <div class="card-frame-header">
-          <span>Clipp3r</span>
-          <span>Raro</span>
-        </div>
-        <img src="clipp3r.png" alt="Clipp3r" class="card-frame-img">
-        <div class="card-frame-stats">
-          90 HP<br>Fucile disegnato -30hp<br>Spara matite -10hp
-        </div>
-      </div>
-      <div class="card-name">Clipp3r</div>
+      <img src="clipp3r.png" alt="Clipp3r" class="card-frame-img">
       <span class="card-rarity raro">RARO</span>
     </div>
 
     <div class="card rarity-comune">
-      <div class="card-frame">
-        <div class="card-frame-header">
-          <span>Aliexpress final boss</span>
-          <span>Comune</span>
-        </div>
-        <img src="aliex.png" alt="Aliexpress final boss" class="card-frame-img">
-        <div class="card-frame-stats">
-          60 HP<br>Vendita lampo -20hp
-        </div>
-      </div>
-      <div class="card-name">Aliexpress final boss</div>
+      <img src="aliex.png" alt="Aliexpress final boss" class="card-frame-img">
       <span class="card-rarity comune">COMUNE</span>
     </div>
 
