@@ -1,22 +1,20 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const sidebarHTML = `
-        <h2>TeenagersITAcards</h2>
-        <a href="index.html">Home</a>
-        <a href="annunci.html">Annunci</a>
-        <a href="carte.html">Carte</a>
-        <a href="gioca.html">Gioca vs Bot</a>
-        <a href="account.html">Account <span style="color: #ff3333; font-size: 12px; font-weight: 600; text-shadow: 0 0 8px rgba(255,51,51,0.6); margin-left: 6px;">in fase di revisione</span></a>
-    `;
-    
-    const sidebarContainer = document.getElementById('sidebar-container');
-    if (sidebarContainer) {
-        sidebarContainer.innerHTML = sidebarHTML;
-        
-        // Evidenzia automaticamente la pagina corrente
-        const currentPage = window.location.pathname.split("/").pop() || "index.html";
-        const activeLink = sidebarContainer.querySelector(`a[href="${currentPage}"]`);
-        if (activeLink) {
-            activeLink.classList.add('active');
-        }
-    }
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebarContainer = document.getElementById("sidebar-container");
+  if (!sidebarContainer) return;
+
+  // Rileva il nome della pagina attuale (es. "index.html", "carte.html", ecc.)
+  const path = window.location.pathname;
+  const page = path.split("/").pop() || "index.html";
+
+  // HTML centralizzato della sidebar con i controlli dinamici
+  sidebarContainer.innerHTML = `
+    <h2>TeenagersITAcards</h2>
+    <a href="index.html" class="${page === 'index.html' ? 'active' : ''}">Home</a>
+    <a href="annunci.html" class="${page === 'annunci.html' ? 'active' : ''}">Annunci</a>
+    <a href="carte.html" class="${page === 'carte.html' ? 'active' : ''}">Carte</a>
+    <a href="gioca.html" class="${page === 'gioca.html' ? 'active' : ''}">Gioca vs Bot</a>
+    <a href="account.html" class="${page === 'account.html' ? 'active' : ''}">
+      Account <span class="badge-review">(In revisione)</span>
+    </a>
+  `;
 });
