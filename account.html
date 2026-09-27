@@ -70,13 +70,22 @@
   .sidebar h2 { font-size: 16px; margin: 0 0 15px 10px; font-weight: 700; }
   .sidebar a {
     color: var(--text-muted); text-decoration: none; padding: 10px 12px;
-    border-radius: 8px; font-weight: 500; display: block;
+    border-radius: 8px; font-weight: 500; display: block; transition: all 0.2s ease;
   }
   .sidebar a:hover { background: var(--aero-btn-hover); color: var(--text-main); }
   .sidebar a.active {
     background: var(--aero-btn-bg); color: var(--text-main);
     border: 1px solid var(--border-color);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   }
+  .badge-review {
+    color: #ff3333;
+    font-size: 12px;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255,51,51,0.6);
+    margin-left: 6px;
+  }
+
   .content { flex: 1; padding: 60px 40px; display: flex; justify-content: center; align-items: flex-start; }
   .panel {
     max-width: 420px; width: 100%;
@@ -116,14 +125,8 @@
 </head>
 <body>
 
-<div class="sidebar">
-  <h2>TeenagersITAcards</h2>
-  <a href="index.html">Home</a>
-  <a href="annunci.html">Annunci</a>
-  <a href="carte.html">Carte</a>
-  <a href="gioca.html">Gioca vs Bot</a>
-  <a href="account.html" class="active">Account</a>
-</div>
+<!-- Sidebar dinamica esterna -->
+<div class="sidebar" id="sidebar-container"></div>
 
 <div class="content">
   <div class="panel">
@@ -275,6 +278,9 @@
 
   checkSession();
 </script>
+
+<!-- Script centralizzato della sidebar -->
+<script src="sidebar.js"></script>
 
 </body>
 </html>
