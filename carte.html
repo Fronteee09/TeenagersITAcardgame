@@ -1,191 +1,294 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" class="color-blue mode-dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeb89Fanpage (Non ufficiale)</title>
-    <style>
-        :root {
-            --bg-color: #040914;
-            --aero-glass: rgba(10, 25, 50, 0.45);
-            --aero-glass-border: rgba(100, 180, 255, 0.25);
-            --aero-glass-shine: rgba(255, 255, 255, 0.15);
-            --text-color: #e0f0ff;
-            --text-muted: #8ab4f8;
-            --accent-blue: #0077ff;
-            --accent-blue-hover: #3399ff;
-            --button-glow: rgba(0, 119, 255, 0.6);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carte - Carte di r/TeenagersITA</title>
+<style>
+  :root.color-blue {
+    --h-1: #1a2230; --h-2: #111620; --h-3: #0d1118;
+    --l-1: #eaf6ff; --l-2: #cfe8fa; --l-3: #dff1fc;
+  }
+  :root.color-yellow {
+    --h-1: #fef08a; --h-2: #fde047; --h-3: #eab308;
+    --l-1: #fefce8; --l-2: #fef9c3; --l-3: #fef08a;
+  }
+  :root.color-red {
+    --h-1: #3b1619; --h-2: #260d0f; --h-3: #180608;
+    --l-1: #fff1f2; --l-2: #ffe4e6; --l-3: #fecdd3;
+  }
+  :root.color-green {
+    --h-1: #14281d; --h-2: #0d1a13; --h-3: #08110b;
+    --l-1: #f0fdf4; --l-2: #dcfce7; --l-3: #bbf7d0;
+  }
+  :root.color-gray {
+    --h-1: #1f242d; --h-2: #151921; --h-3: #0d1015;
+    --l-1: #f8fafc; --l-2: #f1f5f9; --l-3: #e2e8f0;
+  }
+  :root.color-purple {
+    --h-1: #281832; --h-2: #1b0f22; --h-3: #110916;
+    --l-1: #faf5ff; --l-2: #f3e8ff; --l-3: #e9d5ff;
+  }
+  :root.mode-dark {
+    --bg-grad-1: var(--h-1); --bg-grad-2: var(--h-2); --bg-grad-3: var(--h-3);
+    --panel-bg: rgba(22, 27, 34, 0.85);
+    --text-main: #e0e6ed; --text-muted: #b8c7d9;
+    --border-color: rgba(255, 255, 255, 0.15);
+    --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, rgba(0,0,0,0.1) 51%, rgba(255,255,255,0.05) 100%);
+    --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, rgba(0,0,0,0.05) 51%, rgba(255,255,255,0.15) 100%);
+  }
+  :root.mode-light {
+    --bg-grad-1: var(--l-1); --bg-grad-2: var(--l-2); --bg-grad-3: var(--l-3);
+    --panel-bg: rgba(255, 255, 255, 0.85);
+    --text-main: #1a1a1a; --text-muted: #4a5568;
+    --border-color: rgba(127, 184, 224, 0.4);
+    --aero-btn-bg: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(230,242,255,0.8) 50%, rgba(200,225,250,0.8) 51%, rgba(235,245,255,0.9) 100%);
+    --aero-btn-hover: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(240,248,255,0.9) 50%, rgba(210,230,255,0.9) 51%, rgba(245,250,255,1) 100%);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--bg-grad-1) 0%, var(--bg-grad-2) 50%, var(--bg-grad-3) 100%);
+    color: var(--text-main);
+  }
+  
+  /* SIDEBAR FISSA A SINISTRA */
+  .sidebar {
+    width: 240px;
+    background: var(--panel-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1100;
+    flex-shrink: 0;
+    overflow-y: auto;
+  }
+  .sidebar h2 { font-size: 16px; margin: 0 0 15px 10px; font-weight: 700; color: var(--text-main); }
+  .sidebar a {
+    color: var(--text-muted); text-decoration: none; padding: 10px 12px;
+    border-radius: 8px; font-weight: 500; display: block; transition: all 0.2s ease;
+  }
+  .sidebar a:hover { background: var(--aero-btn-hover); color: var(--text-main); }
+  .sidebar a.active {
+    background: var(--aero-btn-bg); color: var(--text-main);
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  .badge-review {
+    color: #ff1744;
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 6px;
+    text-shadow: 0 0 6px #ff1744, 0 0 12px #ff1744;
+  }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  .top-controls { position: fixed; top: 15px; right: 25px; display: flex; gap: 10px; z-index: 1200; }
+  .control-btn {
+    background: var(--aero-btn-bg); border: 1px solid var(--border-color); color: var(--text-main);
+    padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 600;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 10px rgba(0,0,0,0.3);
+    backdrop-filter: blur(6px); display: flex; align-items: center; gap: 6px; white-space: nowrap;
+  }
+  .control-btn:hover { background: var(--aero-btn-hover); }
+  .settings-dropdown {
+    position: absolute; top: 45px; right: 0; background: var(--panel-bg);
+    border: 1px solid var(--border-color); border-radius: 10px; padding: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+    display: none; flex-direction: column; gap: 10px; width: 200px; z-index: 1300;
+  }
+  .settings-dropdown.show { display: flex; }
+  .dropdown-section-title { font-size: 11px; text-transform: uppercase; font-weight: bold; color: var(--text-muted); margin-bottom: 2px; letter-spacing: 0.5px; }
+  .dropdown-group { display: flex; flex-direction: column; gap: 4px; }
+  .dropdown-item { background: transparent; border: none; color: var(--text-main); text-align: left; padding: 6px 8px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
+  .dropdown-item:hover { background: var(--aero-btn-hover); }
 
-        body {
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 20% 20%, rgba(0, 100, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, rgba(0, 50, 150, 0.2) 0%, transparent 50%),
-                linear-gradient(135deg, #02050c 0%, #081226 100%);
-            color: var(--text-color);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+  .content { 
+    flex: 1; 
+    padding: 80px 40px 40px 40px; 
+    margin-left: 240px; 
+  }
+  .content h1 { font-size: 26px; margin-top: 0; margin-bottom: 5px; color: var(--text-main); }
+  
+  .creator-credit {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f97316;
+    margin-bottom: 30px;
+  }
+  
+  body.mobile-view { flex-direction: column; }
+  body.mobile-view .sidebar { position: static; height: auto; width: 100%; }
+  body.mobile-view .content { margin-left: 0; }
+  body.mobile-view .cards-grid { justify-content: center; }
 
-        /* Layout principale con Sidebar a destra */
-        .wrapper {
-            display: flex;
-            flex: 1;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-            gap: 20px;
-        }
-
-        /* Contenuto principale (Sinistra) */
-        .main-content {
-            flex: 1;
-            background: var(--aero-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--aero-glass-border);
-            border-top: 1px solid var(--aero-glass-shine);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 150, 255, 0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 150, 255, 0.4);
-            letter-spacing: 1px;
-        }
-
-        .fanpage-statement {
-            font-size: 1.3rem;
-            color: var(--text-muted);
-            background: rgba(0, 100, 255, 0.1);
-            border: 1px solid rgba(0, 150, 255, 0.2);
-            padding: 15px 25px;
-            border-radius: 12px;
-            box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.1);
-        }
-
-        /* Sidebar a destra */
-        .sidebar {
-            width: 280px;
-            background: var(--aero-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--aero-glass-border);
-            border-top: 1px solid var(--aero-glass-shine);
-            border-radius: 16px;
-            padding: 25px 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .sidebar h3 {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 8px;
-        }
-
-        /* Tasti stile Aero Blu nella Sidebar */
-        .aero-btn {
-            background: linear-gradient(to bottom, #1a8cff 0%, #0055cc 100%);
-            color: #ffffff;
-            border: 1px solid #4da6ff;
-            border-top: 1px solid #80bfff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            text-align: center;
-            text-decoration: none;
-            box-shadow: 0 4px 15px var(--button-glow), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .aero-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), transparent);
-            border-radius: 8px 8px 0 0;
-            pointer-events: none;
-        }
-
-        .aero-btn:hover {
-            background: linear-gradient(to bottom, #3399ff, #0066ff);
-            border-color: #80bfff;
-            box-shadow: 0 6px 20px rgba(0, 130, 255, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            transform: translateY(-2px);
-        }
-
-        .aero-btn:active {
-            transform: translateY(1px);
-            background: linear-gradient(to bottom, #004499, #003380);
-            box-shadow: 0 2px 8px rgba(0, 100, 255, 0.5), inset 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Responsive per dispositivi mobili */
-        @media (max-width: 900px) {
-            .wrapper {
-                flex-direction: column;
-            }
-            .sidebar {
-                width: 100%;
-            }
-        }
-    </style>
+  .cards-grid { display: flex; flex-wrap: wrap; gap: 30px; }
+  .card {
+    width: 220px;
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 10px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 10px 25px rgba(0,0,0,0.35);
+  }
+  .card.rarity-leggendario {
+    border-color: #eab308;
+    box-shadow: 0 0 0 2px #eab308, inset 0 1px 0 rgba(255,255,255,0.1), 0 10px 25px rgba(0,0,0,0.35);
+  }
+  .card.rarity-comune {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 2px #22c55e, inset 0 1px 0 rgba(255,255,255,0.1), 0 10px 25px rgba(0,0,0,0.35);
+  }
+  .card.rarity-viola {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 2px #a855f7, inset 0 1px 0 rgba(255,255,255,0.1), 0 10px 25px rgba(0,0,0,0.35);
+  }
+  .card-frame-img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+  }
+  .card-rarity {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  .card-rarity.leggendario { background: #eab30833; color: #eab308; }
+  .card-rarity.raro { background: rgba(255,255,255,0.1); color: var(--text-muted); }
+  .card-rarity.comune { background: #22c55e33; color: #4ade80; }
+  .card-rarity.viola { background: #a855f733; color: #c084fc; }
+</style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <!-- Contenuto Principale -->
-        <main class="main-content">
-            <h1>Zeb89Fanpage</h1>
-            <div class="fanpage-statement">
-                La zeb89Fanpage è un fanpage (Non ufficiale)
-            </div>
-        </main>
+<div class="sidebar">
+  <h2>TeenagersITAcards</h2>
+  <a href="index.html" id="link-index">Home</a>
+  <a href="annunci.html" id="link-annunci">Annunci</a>
+  <a href="carte.html" id="link-carte" class="active">Carte</a>
+  <a href="gioca.html" id="link-gioca">Gioca vs Bot</a>
+  <a href="account.html" id="link-account">Account <span class="badge-review">(In revisione)</span></a>
+</div>
 
-        <!-- Sidebar a Destra con Tasti Blu -->
-        <aside class="sidebar">
-            <h3>Navigazione</h3>
-            <a href="#" class="aero-btn">Home</a>
-            <a href="#" class="aero-btn">Video</a>
-            <a href="#" class="aero-btn">Citazioni</a>
-            <a href="#" class="aero-btn">Community</a>
-            <a href="#" class="aero-btn">Contatti</a>
-        </aside>
+<div class="top-controls">
+  <button id="viewToggle" class="control-btn">Vista: PC</button>
+  <div style="position: relative;">
+    <button id="settingsBtn" class="control-btn">⚙ Impostazioni</button>
+    <div id="settingsMenu" class="settings-dropdown">
+      <div class="dropdown-section-title">Colore Sfondo</div>
+      <div class="dropdown-group">
+        <button class="dropdown-item" onclick="setColor('color-blue')">🔵 Blu Aero</button>
+        <button class="dropdown-item" onclick="setColor('color-yellow')">🟡 Giallo</button>
+        <button class="dropdown-item" onclick="setColor('color-red')">🔴 Rosso</button>
+        <button class="dropdown-item" onclick="setColor('color-green')">🟢 Verde</button>
+        <button class="dropdown-item" onclick="setColor('color-gray')">⚪ Grigio</button>
+        <button class="dropdown-item" onclick="setColor('color-purple')">🟣 Viola</button>
+      </div>
+      <hr style="border: none; border-top: 1px solid var(--border-color); margin: 4px 0;">
+      <div class="dropdown-section-title">Modalità</div>
+      <div class="dropdown-group">
+        <button class="dropdown-item" onclick="setMode('mode-dark')">🌙 Scura</button>
+        <button class="dropdown-item" onclick="setMode('mode-light')">☀️ Chiara</button>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="content">
+  <h1>Collezione Carte</h1>
+  <div class="creator-credit">Fronte★ (u/Unknow_guy21)</div>
+  
+  <div class="cards-grid">
+
+    <div class="card rarity-leggendario">
+      <img src="aspro.png" alt="Aspro" class="card-frame-img">
+      <span class="card-rarity leggendario">LEGGENDARIO</span>
+    </div>
+
+    <div class="card">
+      <img src="clipp3r.png" alt="Clipp3r" class="card-frame-img">
+      <span class="card-rarity raro">RARO</span>
+    </div>
+
+    <div class="card rarity-comune">
+      <img src="aliex.png" alt="Aliexpress final boss" class="card-frame-img">
+      <span class="card-rarity comune">COMUNE</span>
+    </div>
+
+    <div class="card rarity-comune">
+      <img src="brandix.png" alt="Brandix" class="card-frame-img">
+      <span class="card-rarity comune">COMUNE</span>
+    </div>
+
+    <div class="card rarity-viola">
+      <img src="fronte.png" alt="Fronte" class="card-frame-img">
+      <span class="card-rarity viola">DEV</span>
+    </div>
+
+    <div class="card rarity-comune">
+      <img src="medico.png" alt="Medico" class="card-frame-img">
+      <span class="card-rarity comune">COMUNE</span>
+    </div>
+
+    <div class="card rarity-leggendario">
+      <img src="automoderator.png" alt="Automoderator" class="card-frame-img">
+      <span class="card-rarity leggendario">LEGGENDARIO</span>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const settingsBtn = document.getElementById('settingsBtn');
+  const settingsMenu = document.getElementById('settingsMenu');
+  if (settingsBtn && settingsMenu) {
+    settingsBtn.addEventListener('click', (e) => { e.stopPropagation(); settingsMenu.classList.toggle('show'); });
+    window.addEventListener('click', () => settingsMenu.classList.remove('show'));
+  }
+  function setColor(colorClass) {
+    const htmlEl = document.documentElement;
+    htmlEl.classList.remove('color-blue', 'color-yellow', 'color-red', 'color-green', 'color-gray', 'color-purple');
+    htmlEl.classList.add(colorClass);
+    localStorage.setItem('site_color', colorClass);
+    if(settingsMenu) settingsMenu.classList.remove('show');
+  }
+  function setMode(modeClass) {
+    const htmlEl = document.documentElement;
+    htmlEl.classList.remove('mode-dark', 'mode-light');
+    htmlEl.classList.add(modeClass);
+    localStorage.setItem('site_mode', modeClass);
+    if(settingsMenu) settingsMenu.classList.remove('show');
+  }
+  const savedColor = localStorage.getItem('site_color');
+  const savedMode = localStorage.getItem('site_mode');
+  const htmlEl = document.documentElement;
+  if (savedColor) { htmlEl.classList.remove('color-blue'); htmlEl.classList.add(savedColor); }
+  if (savedMode) { htmlEl.classList.remove('mode-dark'); htmlEl.classList.add(savedMode); }
+
+  const viewToggle = document.getElementById('viewToggle');
+  if (viewToggle) {
+    viewToggle.addEventListener('click', () => {
+      document.body.classList.toggle('mobile-view');
+      viewToggle.textContent = document.body.classList.contains('mobile-view') ? 'Vista: Mobile' : 'Vista: PC';
+    });
+  }
+</script>
 
 </body>
 </html>
