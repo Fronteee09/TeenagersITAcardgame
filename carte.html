@@ -56,6 +56,7 @@
     color: var(--text-main);
   }
   
+  /* SIDEBAR FISSA */
   .sidebar {
     width: 240px;
     background: var(--panel-bg);
@@ -65,8 +66,13 @@
     flex-direction: column;
     gap: 10px;
     backdrop-filter: blur(10px);
-    min-height: 100vh;
+    height: 100vh;
+    position: fixed; /* Rende la sidebar fissa */
+    top: 0;
+    left: 0;
+    z-index: 1100;
     flex-shrink: 0;
+    overflow-y: auto; /* Aggiunge lo scroll interno se un giorno ci saranno troppi link */
   }
   .sidebar h2 { font-size: 16px; margin: 0 0 15px 10px; font-weight: 700; color: var(--text-main); }
   .sidebar a {
@@ -107,9 +113,17 @@
   .dropdown-item { background: transparent; border: none; color: var(--text-main); text-align: left; padding: 6px 8px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
   .dropdown-item:hover { background: var(--aero-btn-hover); }
 
-  .content { flex: 1; padding: 80px 40px 40px 40px; }
+  /* CONTENUTO PRINCIPALE CON MARGINE SINISTRO PER FAR SPAZIO ALLA SIDEBAR */
+  .content { 
+    flex: 1; 
+    padding: 80px 40px 40px 40px; 
+    margin-left: 240px; /* Sposta il contenuto a destra della sidebar fissa */
+  }
   .content h1 { font-size: 26px; margin-top: 0; margin-bottom: 30px; color: var(--text-main); }
+  
   body.mobile-view { flex-direction: column; }
+  body.mobile-view .sidebar { position: static; height: auto; width: 100%; }
+  body.mobile-view .content { margin-left: 0; }
   body.mobile-view .cards-grid { justify-content: center; }
 
   .cards-grid { display: flex; flex-wrap: wrap; gap: 30px; }
@@ -157,7 +171,7 @@
 </head>
 <body>
 
-<!-- SIDEBAR INTEGRATA IN HTML -->
+<!-- SIDEBAR FISSA -->
 <div class="sidebar">
   <h2>TeenagersITAcards</h2>
   <a href="index.html" id="link-index">Home</a>
