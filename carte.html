@@ -67,12 +67,12 @@
     gap: 10px;
     backdrop-filter: blur(10px);
     height: 100vh;
-    position: fixed; /* Rende la sidebar fissa */
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1100;
     flex-shrink: 0;
-    overflow-y: auto; /* Aggiunge lo scroll interno se un giorno ci saranno troppi link */
+    overflow-y: auto;
   }
   .sidebar h2 { font-size: 16px; margin: 0 0 15px 10px; font-weight: 700; color: var(--text-main); }
   .sidebar a {
@@ -113,13 +113,20 @@
   .dropdown-item { background: transparent; border: none; color: var(--text-main); text-align: left; padding: 6px 8px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; }
   .dropdown-item:hover { background: var(--aero-btn-hover); }
 
-  /* CONTENUTO PRINCIPALE CON MARGINE SINISTRO PER FAR SPAZIO ALLA SIDEBAR */
   .content { 
     flex: 1; 
     padding: 80px 40px 40px 40px; 
-    margin-left: 240px; /* Sposta il contenuto a destra della sidebar fissa */
+    margin-left: 240px; 
   }
-  .content h1 { font-size: 26px; margin-top: 0; margin-bottom: 30px; color: var(--text-main); }
+  .content h1 { font-size: 26px; margin-top: 0; margin-bottom: 5px; color: var(--text-main); }
+  
+  /* Stile per la scritta arancione dei crediti */
+  .creator-credit {
+    font-size: 14px;
+    font-weight: 600;
+    color: #f97316; /* Arancione vivace */
+    margin-bottom: 30px;
+  }
   
   body.mobile-view { flex-direction: column; }
   body.mobile-view .sidebar { position: static; height: auto; width: 100%; }
@@ -171,7 +178,6 @@
 </head>
 <body>
 
-<!-- SIDEBAR FISSA -->
 <div class="sidebar">
   <h2>TeenagersITAcards</h2>
   <a href="index.html" id="link-index">Home</a>
@@ -192,7 +198,7 @@
         <button class="dropdown-item" onclick="setColor('color-yellow')">🟡 Giallo</button>
         <button class="dropdown-item" onclick="setColor('color-red')">🔴 Rosso</button>
         <button class="dropdown-item" onclick="setColor('color-green')">🟢 Verde</button>
-        <button class="dropdown-item" onclick="setColor('color-gray')">⚪ Grigio</button>
+        <button class="dropdown-item" onclick="setColor('color-gray')|">⚪ Grigio</button>
         <button class="dropdown-item" onclick="setColor('color-purple')">🟣 Viola</button>
       </div>
       <hr style="border: none; border-top: 1px solid var(--border-color); margin: 4px 0;">
@@ -207,6 +213,8 @@
 
 <div class="content">
   <h1>Collezione Carte</h1>
+  <div class="creator-credit">Fronte⭐ (u/Unknow_guy21)</div>
+  
   <div class="cards-grid">
 
     <div class="card rarity-leggendario">
